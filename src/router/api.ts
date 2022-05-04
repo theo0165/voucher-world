@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import ApiIndexController from '../controllers/ApiIndexController';
 
 const router: Router = Router();
