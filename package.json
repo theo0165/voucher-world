@@ -1,3 +1,14 @@
 {
-  "private": true
+  "name": "voucher-world",
+  "private": "true",
+  "scripts": {
+    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/theo0165/voucher-world.git"
+  },
+  "dependencies": {
+    "concurrently": "^7.1.0"
+  }
 }

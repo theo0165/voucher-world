@@ -1,9 +1,11 @@
 {
-  "name": "backend",
+  "name": "voucher-world",
   "version": "1.0.0",
+  "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/server.ts"
+    "start": "nodemon server.ts",
+    "build": "tsc --build",
+    "build:vite": "vite build"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",

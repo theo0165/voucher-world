@@ -15,6 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 
-app.listen(process.env.PORT ?? 3000, () => {
-  console.log(`Listening on port ${process.env.PORT ?? 3000}`);
+app.listen(process.env.PORT ?? 3005, () => {
+  console.log(`Listening on port ${process.env.PORT ?? 3005}`);
 });
