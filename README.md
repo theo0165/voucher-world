@@ -11,6 +11,7 @@ Add the installation instructions.
 # Changelog
 
 -   [#1 - Setup react boilerplate.](#1)
+-   [#2 - Setup express.js boilerplate](#2)
 
 # Code Review
 
