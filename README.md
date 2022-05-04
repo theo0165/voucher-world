@@ -10,8 +10,8 @@ Add the installation instructions.
 
 # Changelog
 
--   [#1 - Setup react boilerplate.](#1)
--   [#2 - Setup express.js boilerplate](#2)
+-   [#1 - Setup react boilerplate.](https://github.com/theo0165/voucher-world/pull/1)
+-   [#2 - Setup express.js boilerplate](https://github.com/theo0165/voucher-world/pull/2)
 
 # Code Review
 
