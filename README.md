@@ -10,7 +10,7 @@ Add the installation instructions.
 
 # Changelog
 
--   [#1 - Add a link to each pull request with a descriptive line.](#1)
+-   [#1 - Setup react boilerplate.](#1)
 -   [#2 - Setup express.js boilerplate](#2)
 
 # Code Review
