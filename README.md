@@ -12,6 +12,7 @@ Add the installation instructions.
 
 -   [#1 - Setup react boilerplate.](https://github.com/theo0165/voucher-world/pull/1)
 -   [#2 - Setup express.js boilerplate](https://github.com/theo0165/voucher-world/pull/2)
+-   [#3 - Change file structure](https://github.com/theo0165/voucher-world/pull/3)
 
 # Code Review
 
