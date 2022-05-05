@@ -21,4 +21,22 @@ export default class Player {
 
     this.display.addChild(this.graphic);
   }
+
+  move(keys: { [key: string]: boolean }) {
+    if (keys['ArrowDown']) {
+      this.graphic.position.y += 5;
+    }
+
+    if (keys['ArrowUp']) {
+      this.graphic.position.y -= 5;
+    }
+
+    if (keys['ArrowRight']) {
+      this.graphic.position.x += 5;
+    }
+
+    if (keys['ArrowLeft']) {
+      this.graphic.position.x -= 5;
+    }
+  }
 }

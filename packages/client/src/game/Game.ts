@@ -1,6 +1,13 @@
 import { Application, Container, Sprite } from 'pixi.js';
 import Player from './classes/Player';
 
+const keysPressed: { [key: string]: boolean } = {
+  ArrowLeft: false,
+  ArrowRight: false,
+  ArrowDown: false,
+  ArrowUp: false,
+};
+
 export default class Game {
   player: Player;
   game: Application;
@@ -20,37 +27,53 @@ export default class Game {
 
     this.player.draw();
 
-    window.addEventListener('keydown', this.keyDown);
-    window.addEventListener('keyup', this.keyUp);
+    this.game.ticker.add(this.gameLoop, this);
+
+    window.addEventListener('keydown', this.keyDown, false);
+    window.addEventListener('keyup', this.keyUp, false);
   }
 
   keyDown(e: KeyboardEvent) {
-    switch (e.key) {
+    const keyCode = e.key;
+
+    switch (keyCode) {
       case 'ArrowUp':
-        console.log('arrow up');
+        keysPressed[keyCode] = true;
         break;
       case 'ArrowDown':
-        console.log('arrow down');
+        keysPressed[keyCode] = true;
         break;
       case 'ArrowRight':
-        console.log('arrow right');
+        keysPressed[keyCode] = true;
         break;
       case 'ArrowLeft':
-        console.log('arrow left');
+        keysPressed[keyCode] = true;
         break;
     }
   }
 
   keyUp(e: KeyboardEvent) {
-    switch (e.key) {
+    const keyCode = e.key;
+
+    switch (keyCode) {
       case 'ArrowUp':
+        keysPressed[keyCode] = false;
         break;
       case 'ArrowDown':
+        keysPressed[keyCode] = false;
         break;
       case 'ArrowRight':
+        keysPressed[keyCode] = false;
         break;
-      case 'ArrwoLeft':
+      case 'ArrowLeft':
+        keysPressed[keyCode] = false;
         break;
     }
+  }
+
+  gameLoop() {
+    console.log(keysPressed);
+
+    this.player.move(keysPressed);
   }
 }
