@@ -1,4 +1,4 @@
-import { Application, Container, Sprite } from 'pixi.js';
+import { Application, Container } from 'pixi.js';
 import Player from './classes/Player';
 
 export default class Game {
@@ -28,16 +28,8 @@ export default class Game {
 
     this.game.ticker.add(this.gameLoop, this);
 
-    window.addEventListener(
-      'keydown',
-      (e: KeyboardEvent) => this.keyDown(e),
-      false
-    );
-    window.addEventListener(
-      'keyup',
-      (e: KeyboardEvent) => this.keyUp(e),
-      false
-    );
+    window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
+    window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
   }
 
   keyDown(e: KeyboardEvent) {
