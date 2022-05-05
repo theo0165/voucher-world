@@ -2,7 +2,8 @@
   "name": "voucher-world",
   "private": "true",
   "scripts": {
-    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\""
+    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\"",
+    "postinstall": "(cd packages/server && npm install); (cd packages/client && npm install)"
   },
   "repository": {
     "type": "git",
