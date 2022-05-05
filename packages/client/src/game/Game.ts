@@ -1,17 +1,16 @@
 import { Application, Container, Sprite } from 'pixi.js';
 import Player from './classes/Player';
 
-const keysPressed: { [key: string]: boolean } = {
-  ArrowLeft: false,
-  ArrowRight: false,
-  ArrowDown: false,
-  ArrowUp: false,
-};
-
 export default class Game {
   player: Player;
   game: Application;
   display: Container;
+  keysPressed: { [key: string]: boolean } = {
+    ArrowLeft: false,
+    ArrowRight: false,
+    ArrowDown: false,
+    ArrowUp: false,
+  };
 
   constructor(playerName: string, color: string) {
     this.game = new Application({
@@ -29,8 +28,16 @@ export default class Game {
 
     this.game.ticker.add(this.gameLoop, this);
 
-    window.addEventListener('keydown', this.keyDown, false);
-    window.addEventListener('keyup', this.keyUp, false);
+    window.addEventListener(
+      'keydown',
+      (e: KeyboardEvent) => this.keyDown(e),
+      false
+    );
+    window.addEventListener(
+      'keyup',
+      (e: KeyboardEvent) => this.keyUp(e),
+      false
+    );
   }
 
   keyDown(e: KeyboardEvent) {
@@ -38,16 +45,16 @@ export default class Game {
 
     switch (keyCode) {
       case 'ArrowUp':
-        keysPressed[keyCode] = true;
+        this.keysPressed[keyCode] = true;
         break;
       case 'ArrowDown':
-        keysPressed[keyCode] = true;
+        this.keysPressed[keyCode] = true;
         break;
       case 'ArrowRight':
-        keysPressed[keyCode] = true;
+        this.keysPressed[keyCode] = true;
         break;
       case 'ArrowLeft':
-        keysPressed[keyCode] = true;
+        this.keysPressed[keyCode] = true;
         break;
     }
   }
@@ -57,23 +64,21 @@ export default class Game {
 
     switch (keyCode) {
       case 'ArrowUp':
-        keysPressed[keyCode] = false;
+        this.keysPressed[keyCode] = false;
         break;
       case 'ArrowDown':
-        keysPressed[keyCode] = false;
+        this.keysPressed[keyCode] = false;
         break;
       case 'ArrowRight':
-        keysPressed[keyCode] = false;
+        this.keysPressed[keyCode] = false;
         break;
       case 'ArrowLeft':
-        keysPressed[keyCode] = false;
+        this.keysPressed[keyCode] = false;
         break;
     }
   }
 
   gameLoop() {
-    console.log(keysPressed);
-
-    this.player.move(keysPressed);
+    this.player.move(this.keysPressed);
   }
 }
