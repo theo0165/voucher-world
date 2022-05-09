@@ -9,6 +9,7 @@ import { Server } from 'socket.io';
 
 import router from './router/api';
 import path from 'path';
+import events from './events';
 
 const app: express.Application = express();
 const server = createServer(app);
@@ -28,8 +29,13 @@ app.use('/api', router);
 const io = new Server(server, { cors: { origin: '*' } });
 
 io.on('connection', (socket) => {
-  console.log(socket);
   console.log('user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  events(socket);
 });
 
 server.listen(process.env.PORT ?? 3005, () => {
