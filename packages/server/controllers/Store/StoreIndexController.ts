@@ -10,6 +10,7 @@ const StoreIndexController = async (
     name,
     primary_color,
     secondary_color,
+    logo,
     vouchers: voucher (
       id,
       name,
@@ -24,6 +25,8 @@ const StoreIndexController = async (
       code: stores.status,
       successful: false,
     });
+
+    return;
   }
 
   res.json({ data: stores.data, successful: true });

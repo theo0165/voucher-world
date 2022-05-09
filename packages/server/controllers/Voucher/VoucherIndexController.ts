@@ -5,7 +5,19 @@ const VoucherIndexController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const vouchers = await supabase.from('voucher').select();
+  const vouchers = await supabase.from('voucher').select(`
+    id,
+    name,
+    value,
+    color,
+    store (
+      id,
+      name,
+      primary_color,
+      secondary_color,
+      logo
+    )
+  `);
 
   if (vouchers.error) {
     res.json({
@@ -13,6 +25,8 @@ const VoucherIndexController = async (
       code: vouchers.status,
       successful: false,
     });
+
+    return;
   }
 
   res.json({ data: vouchers.data, successful: true });
