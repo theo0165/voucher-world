@@ -1,7 +1,13 @@
 import '../style/index.scss';
-import { io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 
-const socket = io('http://localhost:3005');
+let socket: Socket;
+
+if (import.meta.env.VITE_SERVER_URL) {
+  socket = io(import.meta.env.VITE_SERVER_URL);
+} else {
+  throw new Error('Server url not defined in env file');
+}
 
 socket.on('pong', () => {
   console.log('pong');

@@ -1,6 +1,6 @@
-import { Socket } from 'socket.io';
+import { Socket, Server } from 'socket.io';
 import testEvent from './testEvent';
 
-export default (socket: Socket) => {
+export default (socket: Socket, io: Server) => {
   testEvent(socket);
 };

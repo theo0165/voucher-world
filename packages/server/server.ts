@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 
-  events(socket);
+  events(socket, io);
 });
 
 server.listen(process.env.PORT ?? 3005, () => {
