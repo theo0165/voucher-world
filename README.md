@@ -15,6 +15,7 @@ Add the installation instructions.
 -   [#3 - Update changelog links](https://github.com/theo0165/voucher-world/pull/3)
 -   [#4 - Change file structure](https://github.com/theo0165/voucher-world/pull/4)
 -   [#5 - Basic classes (player and game). Move player. Eslint.](https://github.com/theo0165/voucher-world/pull/5)
+-   [#6 - Add supabase + basic GET api](https://github.com/theo0165/voucher-world/pull/6)
 
 # Code Review
 
