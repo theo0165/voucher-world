@@ -1,4 +1,4 @@
-import { Container, Graphics } from 'pixi.js';
+import { Container, Graphics, Sprite } from 'pixi.js';
 
 export default class Player {
   name: string;
@@ -24,7 +24,7 @@ export default class Player {
 
   move(keys: { [key: string]: boolean }) {
     if (keys['ArrowDown']) {
-      this.graphic.position.y += 5;
+      this.graphic.position.y = 5;
     }
 
     if (keys['ArrowUp']) {
