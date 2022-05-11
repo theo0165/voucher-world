@@ -145,7 +145,7 @@
     "image": "character.png",
     "format": "RGBA8888",
     "size": { "w": 256, "h": 16 },
-    "scale": "1",
+    "scale": "0.5",
     "smartupdate": "$TexturePacker:SmartUpdate:13bf91e19b31ff4b311344fdc78ef2a7:b27047f6ddd1984f2ab994892175b854:ba79d90e62093288dac5354e7416a46a$"
   }
 }
