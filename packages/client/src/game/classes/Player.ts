@@ -1,25 +1,53 @@
-import { Container, Graphics } from 'pixi.js';
+import {
+  AnimatedSprite,
+  Application,
+  Container,
+  Graphics,
+  Loader,
+} from 'pixi.js';
 
 export default class Player {
   name: string;
   color: string;
   display: Container;
   graphic: Graphics;
+  app: Application;
 
-  constructor(display: Container, name: string, color: string) {
+  constructor(
+    display: Container,
+    app: Application,
+    name: string,
+    color: string
+  ) {
     this.name = name;
     this.color = color;
     this.display = display;
+    this.app = app;
 
+    this.loadSprite();
     this.graphic = new Graphics();
   }
 
-  draw() {
-    this.graphic.beginFill(0xde3249);
-    this.graphic.drawRect(50, 50, 100, 100);
-    this.graphic.endFill();
+  loadSprite() {
+    this.app.loader
+      .add('character', '/spritesheets/character/character.json')
+      .load(() => this.draw());
+  }
 
-    this.display.addChild(this.graphic);
+  draw() {
+    const sheet = this.app.loader.resources['character'];
+
+    console.log(sheet);
+
+    let sprite: AnimatedSprite | null;
+
+    if (sheet.spritesheet) {
+      console.log(sheet.spritesheet.animations['char_right']);
+      sprite = new AnimatedSprite(sheet.spritesheet.animations['char_right']);
+      sprite.animationSpeed = 0.167;
+      sprite.play();
+      this.display.addChild(sprite);
+    }
   }
 
   move(keys: { [key: string]: boolean }) {

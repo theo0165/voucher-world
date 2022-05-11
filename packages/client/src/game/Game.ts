@@ -20,11 +20,9 @@ export default class Game {
 
     this.display = this.game.stage;
 
-    this.player = new Player(this.display, playerName, color);
+    this.player = new Player(this.display, this.game, playerName, color);
 
     document.body.appendChild(this.game.view);
-
-    this.player.draw();
 
     this.game.ticker.add(this.gameLoop, this);
 
