@@ -2,14 +2,16 @@
   "name": "voucher-world",
   "private": "true",
   "scripts": {
-    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\""
+    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\"",
+    "postinstall": "(cd packages/server && npm install); (cd packages/client && npm install)"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/theo0165/voucher-world.git"
   },
   "dependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.22.0",
