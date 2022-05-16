@@ -13,7 +13,8 @@ export default class Player {
   container: Container;
   app: Application;
   sprite: AnimatedSprite | null = null;
-  currentDirection: 'up' | 'down' | 'left' | 'right' | 'idle' = 'idle';
+  currentDirection: 'up' | 'down' | 'left' | 'right' = 'down';
+  isIdle: boolean = false;
 
   constructor(
     display: Container,
@@ -30,18 +31,22 @@ export default class Player {
     this.container = new Container();
   }
 
-  loadSprite() {
+  private loadSprite() {
     this.app.loader
       .add('character', '/spritesheets/character/character.json')
       .load(() => this.draw());
   }
 
   draw() {
-    this.updateSprite('right'); // Change to idle
+    this.updateSprite('down', true); // Change to idle
   }
 
-  updateSprite(direction: 'up' | 'down' | 'left' | 'right' | 'idle') {
+  private updateSprite(
+    direction: 'up' | 'down' | 'left' | 'right',
+    isIdle: boolean = false
+  ) {
     this.currentDirection = direction;
+    this.isIdle = isIdle;
     this.container.removeChildren();
 
     const sheet = this.app.loader.resources['character'];
@@ -56,7 +61,9 @@ export default class Player {
 
     if (sheet.spritesheet) {
       this.sprite = new AnimatedSprite(
-        sheet.spritesheet.animations[`char_${direction}`]
+        isIdle
+          ? sheet.spritesheet.animations[`char_idle_${direction}`]
+          : sheet.spritesheet.animations[`char_${direction}`]
       );
       this.sprite.anchor.set(-0.7, -1.5);
       this.sprite.animationSpeed = 0.167;
@@ -69,9 +76,9 @@ export default class Player {
 
   move(keys: { [key: string]: boolean }) {
     if (keys['ArrowDown']) {
-      this.container.position.y += 5;
+      this.container.position.y += 1;
 
-      if (this.currentDirection != 'down') {
+      if (this.currentDirection != 'down' || this.isIdle) {
         this.updateSprite('down');
       }
 
@@ -79,9 +86,9 @@ export default class Player {
     }
 
     if (keys['ArrowUp']) {
-      this.container.position.y -= 5;
+      this.container.position.y -= 1;
 
-      if (this.currentDirection != 'up') {
+      if (this.currentDirection != 'up' || this.isIdle) {
         this.updateSprite('up');
       }
 
@@ -89,9 +96,9 @@ export default class Player {
     }
 
     if (keys['ArrowRight']) {
-      this.container.position.x += 5;
+      this.container.position.x += 1;
 
-      if (this.currentDirection != 'right') {
+      if (this.currentDirection != 'right' || this.isIdle) {
         this.updateSprite('right');
       }
 
@@ -99,17 +106,26 @@ export default class Player {
     }
 
     if (keys['ArrowLeft']) {
-      this.container.position.x -= 5;
+      this.container.position.x -= 1;
 
-      if (this.currentDirection != 'left') {
+      if (this.currentDirection != 'left' || this.isIdle) {
         this.updateSprite('left');
       }
 
       return;
     }
 
-    if (Object.keys(keys).length == 0) {
-      //Stop
+    if (
+      keys['ArrowDown'] == false &&
+      keys['ArrowUp'] == false &&
+      keys['ArrowRight'] == false &&
+      keys['ArrowLeft'] == false
+    ) {
+      if (this.isIdle == false) {
+        this.updateSprite(this.currentDirection, true);
+      }
+
+      return;
     }
   }
 }
