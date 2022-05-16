@@ -14,7 +14,7 @@ export default class Player {
   app: Application;
   sprite: AnimatedSprite | null = null;
   currentDirection: 'up' | 'down' | 'left' | 'right' = 'down';
-  isIdle: boolean = false;
+  isIdle = false;
 
   constructor(
     display: Container,
@@ -43,7 +43,7 @@ export default class Player {
 
   private updateSprite(
     direction: 'up' | 'down' | 'left' | 'right',
-    isIdle: boolean = false
+    isIdle = false
   ) {
     this.currentDirection = direction;
     this.isIdle = isIdle;
