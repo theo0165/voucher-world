@@ -30,7 +30,7 @@ export default class Game {
     window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
   }
 
-  keyDown(e: KeyboardEvent) {
+  private keyDown(e: KeyboardEvent) {
     const keyCode = e.key;
 
     switch (keyCode) {
@@ -49,7 +49,7 @@ export default class Game {
     }
   }
 
-  keyUp(e: KeyboardEvent) {
+  private keyUp(e: KeyboardEvent) {
     const keyCode = e.key;
 
     switch (keyCode) {
@@ -68,7 +68,7 @@ export default class Game {
     }
   }
 
-  gameLoop() {
+  private gameLoop() {
     this.player.move(this.keysPressed);
   }
 }
