@@ -4,6 +4,7 @@ import {
   Container,
   Text,
   TextStyle,
+  SCALE_MODES,
 } from 'pixi.js';
 
 export default class Player {
@@ -65,7 +66,10 @@ export default class Player {
           ? sheet.spritesheet.animations[`char_idle_${direction}`]
           : sheet.spritesheet.animations[`char_${direction}`]
       );
-      this.sprite.anchor.set(-0.7, -1.5);
+      this.sprite.texture.baseTexture.scaleMode = SCALE_MODES.NEAREST;
+      this.sprite.width = 64;
+      this.sprite.height = 64;
+      this.sprite.anchor.set(-0.15, -0.5);
       this.sprite.animationSpeed = 0.167;
       this.sprite.play();
       this.container.addChild(this.sprite);
@@ -76,7 +80,7 @@ export default class Player {
 
   move(keys: { [key: string]: boolean }) {
     if (keys['ArrowDown']) {
-      this.container.position.y += 1;
+      this.container.position.y += 5;
 
       if (this.currentDirection != 'down' || this.isIdle) {
         this.updateSprite('down');
@@ -86,7 +90,7 @@ export default class Player {
     }
 
     if (keys['ArrowUp']) {
-      this.container.position.y -= 1;
+      this.container.position.y -= 5;
 
       if (this.currentDirection != 'up' || this.isIdle) {
         this.updateSprite('up');
@@ -96,7 +100,7 @@ export default class Player {
     }
 
     if (keys['ArrowRight']) {
-      this.container.position.x += 1;
+      this.container.position.x += 5;
 
       if (this.currentDirection != 'right' || this.isIdle) {
         this.updateSprite('right');
@@ -106,7 +110,7 @@ export default class Player {
     }
 
     if (keys['ArrowLeft']) {
-      this.container.position.x -= 1;
+      this.container.position.x -= 5;
 
       if (this.currentDirection != 'left' || this.isIdle) {
         this.updateSprite('left');
