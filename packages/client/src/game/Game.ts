@@ -20,11 +20,9 @@ export default class Game {
 
     this.display = this.game.stage;
 
-    this.player = new Player(this.display, playerName, color);
+    this.player = new Player(this.display, this.game, playerName, color);
 
     document.body.appendChild(this.game.view);
-
-    this.player.draw();
 
     this.game.ticker.add(this.gameLoop, this);
 
@@ -32,7 +30,7 @@ export default class Game {
     window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
   }
 
-  keyDown(e: KeyboardEvent) {
+  private keyDown(e: KeyboardEvent) {
     const keyCode = e.key;
 
     switch (keyCode) {
@@ -51,7 +49,7 @@ export default class Game {
     }
   }
 
-  keyUp(e: KeyboardEvent) {
+  private keyUp(e: KeyboardEvent) {
     const keyCode = e.key;
 
     switch (keyCode) {
@@ -70,7 +68,7 @@ export default class Game {
     }
   }
 
-  gameLoop() {
+  private gameLoop() {
     this.player.move(this.keysPressed);
   }
 }
