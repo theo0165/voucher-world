@@ -3,11 +3,16 @@ import Room from '../types/Room';
 
 const rooms: Room[] = [];
 
+//console.log(parseInt(process.env.MAX_PLAYER!));
+
 export const joinRoom = (player: Player): Room => {
+  let hasJoined = false;
+  let roomToJoin: Room | null = null;
+
   // If no rooms are availible, create one
   if (rooms.length == 0) {
     const room = {
-      id: 'room-1',
+      id: 'room-0',
       players: [player],
     };
 
@@ -19,11 +24,17 @@ export const joinRoom = (player: Player): Room => {
   // Go over every room
   rooms.forEach((room) => {
     // If player can join, return room
-    if (room.players.length < parseInt(process.env.MAX_PLAYER!) ?? 5) {
+    if (room.players.length < 5) {
       room.players.push(player);
-      return room;
+
+      hasJoined = true;
+      roomToJoin = room;
     }
   });
+
+  if (hasJoined && roomToJoin) {
+    return roomToJoin;
+  }
 
   // No free rooms, create new
   const newRoom = {

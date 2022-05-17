@@ -11,6 +11,8 @@ if (inputField && submitBtn) {
   });
 }
 
-socket.on('join ok', (data) => {});
+socket.on('join ok', (data) => {
+  console.log(data);
+});
 
 export {};
