@@ -33,9 +33,13 @@ export default class Player {
   }
 
   private loadSprite() {
-    this.app.loader
-      .add('character', '/spritesheets/character/character.json')
-      .load(() => this.draw());
+    if (!this.app.loader.resources['character']) {
+      this.app.loader
+        .add('character', '/spritesheets/character/character.json')
+        .load(() => this.draw());
+    } else {
+      this.draw();
+    }
   }
 
   draw() {

@@ -8,7 +8,7 @@ export default (socket: Socket, io: Server) => {
 
     socket.join(room.id);
 
-    socket.emit('join ok', room);
+    socket.emit('join ok', { player: data, room });
     io.to(room.id).emit('new player', data);
   });
 };

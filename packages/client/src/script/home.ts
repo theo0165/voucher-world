@@ -12,7 +12,9 @@ if (inputField && submitBtn) {
 }
 
 socket.on('join ok', (data) => {
-  console.log(data);
+  window.localStorage.setItem('game', JSON.stringify(data));
+
+  window.location.href = '/game.html';
 });
 
 export {};

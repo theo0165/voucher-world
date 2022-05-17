@@ -20,6 +20,17 @@ export default class Game {
 
     this.display = this.game.stage;
 
+    if (window.localStorage.getItem('game')) {
+      const game = JSON.parse(window.localStorage.getItem('game') ?? '{}');
+      console.log(game.room.players);
+
+      //@ts-ignore
+      game.room.players.forEach((player) => {
+        //@ts-ignore
+        new Player(this.display, this.game, player.username, 'green');
+      });
+    }
+
     this.player = new Player(this.display, this.game, playerName, color);
 
     document.body.appendChild(this.game.view);
