@@ -10,25 +10,8 @@ export default async (socket: Socket, io: Server) => {
 
     await socket.join(room.id);
 
-    console.log(socket.id + ' now in rooms ', getRoomsByUser(socket.id));
-
     socket.emit('join ok', { player: data, room });
 
     io.in(room.id).emit('new player', data);
   });
-
-  function getRoomsByUser(id: string) {
-    let usersRooms = [];
-    let rooms = io.sockets.adapter.rooms;
-
-    for (let room in rooms) {
-      if (rooms.hasOwnProperty(room)) {
-        //@ts-ignore
-        let sockets = rooms[room].sockets;
-        if (id in sockets) usersRooms.push(room);
-      }
-    }
-
-    return usersRooms;
-  }
 };
