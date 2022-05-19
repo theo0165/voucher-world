@@ -1,8 +1,8 @@
 import '../style/index.scss';
+import Player from '../types/Player';
+import Room from '../types/Room';
 import socket from './socket';
 
-socket.on('pong', () => {
-  console.log('pong');
+socket.on('new player', (data: Player[]) => {
+  console.log({ ev: 'new player', data });
 });
-
-socket.emit('ping');

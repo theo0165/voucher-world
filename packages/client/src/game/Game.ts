@@ -1,5 +1,6 @@
 import { Application, Container } from 'pixi.js';
 import Player from './classes/Player';
+import GameType from '../types/GameType';
 
 export default class Game {
   player: Player;
@@ -21,17 +22,23 @@ export default class Game {
     this.display = this.game.stage;
 
     if (window.localStorage.getItem('game')) {
-      const game = JSON.parse(window.localStorage.getItem('game') ?? '{}');
-      console.log(game.room.players);
+      const game: GameType = JSON.parse(
+        window.localStorage.getItem('game') ?? '{}'
+      );
 
-      //@ts-ignore
-      game.room.players.forEach((player) => {
-        //@ts-ignore
-        new Player(this.display, this.game, player.username, 'green');
-      });
+      game.room.players
+        .filter((player) => player.username != game.player.username)
+        .forEach((player) => {
+          new Player(this.display, this.game, player.username, 'green');
+        });
     }
 
-    this.player = new Player(this.display, this.game, playerName, color);
+    this.player = new Player(
+      this.display,
+      this.game,
+      playerName + ' (local)',
+      color
+    );
 
     document.body.appendChild(this.game.view);
 

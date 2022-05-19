@@ -28,8 +28,8 @@ export default class Player {
     this.display = display;
     this.app = app;
 
-    this.loadSprite();
     this.container = new Container();
+    this.loadSprite();
   }
 
   private loadSprite() {
@@ -52,7 +52,7 @@ export default class Player {
   ) {
     this.currentDirection = direction;
     this.isIdle = isIdle;
-    this.container.removeChildren();
+    this.container.removeChildren(0);
 
     const sheet = this.app.loader.resources['character'];
 

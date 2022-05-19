@@ -12,7 +12,7 @@ export const joinRoom = (player: Player): Room => {
   // If no rooms are availible, create one
   if (rooms.length == 0) {
     const room = {
-      id: 'room-0',
+      id: '0',
       players: [player],
     };
 
@@ -38,7 +38,7 @@ export const joinRoom = (player: Player): Room => {
 
   // No free rooms, create new
   const newRoom = {
-    id: `room-${rooms.length}`,
+    id: 'rooms.length',
     players: [player],
   };
 

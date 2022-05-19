@@ -7,6 +7,8 @@ if (inputField && submitBtn) {
   submitBtn.addEventListener('click', () => {
     socket.emit('join game', {
       username: inputField.value,
+      x: 0,
+      y: 0,
     });
   });
 }

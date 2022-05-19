@@ -3,6 +3,7 @@
   "private": "true",
   "scripts": {
     "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\"",
+    "start:host": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev:host\"",
     "postinstall": "(cd packages/server && npm install); (cd packages/client && npm install)"
   },
   "repository": {
