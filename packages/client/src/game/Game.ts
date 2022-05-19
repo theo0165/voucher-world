@@ -26,7 +26,7 @@ export default class Game {
     this.display = this.game.stage;
 
     game.room.players
-      .filter((player) => player.username != game.player.username)
+      .filter((player) => player.id != game.player.id)
       .forEach((player) => {
         new Player(
           this.display,
