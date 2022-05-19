@@ -1,6 +1,8 @@
 import { Application, Container } from 'pixi.js';
 import Player from './classes/Player';
 import GameType from '../types/GameType';
+import PlayerType from '../types/Player';
+import socket from '../script/socket';
 
 export default class Game {
   player: Player;
@@ -13,7 +15,9 @@ export default class Game {
     ArrowUp: false,
   };
 
-  constructor(playerName: string, color: string) {
+  constructor(playerName: string, color: string, game: GameType) {
+    console.log({ game });
+
     this.game = new Application({
       width: window.innerWidth,
       height: window.innerHeight,
@@ -21,23 +25,24 @@ export default class Game {
 
     this.display = this.game.stage;
 
-    if (window.localStorage.getItem('game')) {
-      const game: GameType = JSON.parse(
-        window.localStorage.getItem('game') ?? '{}'
-      );
-
-      game.room.players
-        .filter((player) => player.username != game.player.username)
-        .forEach((player) => {
-          new Player(this.display, this.game, player.username, 'green');
-        });
-    }
+    game.room.players
+      .filter((player) => player.username != game.player.username)
+      .forEach((player) => {
+        new Player(
+          this.display,
+          this.game,
+          player.username,
+          'green',
+          player.id
+        );
+      });
 
     this.player = new Player(
       this.display,
       this.game,
       playerName + ' (local)',
-      color
+      color,
+      socket.id
     );
 
     document.body.appendChild(this.game.view);
@@ -88,5 +93,11 @@ export default class Game {
 
   private gameLoop() {
     this.player.move(this.keysPressed);
+  }
+
+  addPlayer({ username, color, id }: PlayerType) {
+    console.log('adding player');
+
+    new Player(this.display, this.game, username, color, id);
   }
 }

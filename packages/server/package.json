@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": "true",
   "scripts": {
-    "start": "DEBUG=socket* nodemon server.ts",
+    "start": "nodemon server.ts",
+    "debug": "DEBUG=socket* nodemon server.ts",
     "build": "tsc --build",
     "build:vite": "vite build"
   },

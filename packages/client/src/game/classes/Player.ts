@@ -10,6 +10,7 @@ import {
 export default class Player {
   name: string;
   color: string;
+  id: string;
   display: Container;
   container: Container;
   app: Application;
@@ -21,10 +22,12 @@ export default class Player {
     display: Container,
     app: Application,
     name: string,
-    color: string
+    color: string,
+    id: string
   ) {
     this.name = name;
     this.color = color;
+    this.id = id;
     this.display = display;
     this.app = app;
 
