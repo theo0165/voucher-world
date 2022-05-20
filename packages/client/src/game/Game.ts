@@ -76,14 +76,12 @@ export default class Game {
         return false;
       });
 
-      console.log(playerToUpdate);
-
       if (playerToUpdate.length > 0) {
         playerToUpdate[0].container.position.x = state.x;
         playerToUpdate[0].container.position.y = state.y;
 
         if (
-          playerToUpdate[0].currentDirection != state.currentDirection ||
+          playerToUpdate[0].currentDirection != state.direction ||
           playerToUpdate[0].isIdle != state.isIdle
         ) {
           playerToUpdate[0].updateSprite(state.direction, state.isIdle);
