@@ -3,6 +3,8 @@
   "private": "true",
   "scripts": {
     "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\"",
+    "start:host": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev:host\"",
+    "debug": "concurrently \"cd packages/server && npm debug\" \"cd packages/client && npm run dev:host\"",
     "postinstall": "(cd packages/server && npm install); (cd packages/client && npm install)"
   },
   "repository": {
@@ -10,7 +12,8 @@
     "url": "git+https://github.com/theo0165/voucher-world.git"
   },
   "dependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.1.0",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.22.0",
