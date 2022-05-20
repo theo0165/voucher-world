@@ -44,3 +44,21 @@ export const joinRoom = (player: Player): Room => {
 
   return newRoom;
 };
+
+export const leaveRoom = (roomId: string, playerId: string) => {
+  rooms.forEach((room, roomIndex) => {
+    if (room.id == roomId) {
+      room.players.forEach((player, index) => {
+        if (player.id == playerId) {
+          room.players.splice(index, 1);
+
+          if (room.players.length == 0) {
+            rooms.splice(roomIndex, 1);
+          }
+
+          console.log({ rooms });
+        }
+      });
+    }
+  });
+};

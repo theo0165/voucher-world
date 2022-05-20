@@ -30,4 +30,10 @@ socket.on('new player', (player: PlayerType) => {
   }
 });
 
+socket.on('player leave', ({ id }) => {
+  if (game) {
+    game.removePlayer(id);
+  }
+});
+
 export {};

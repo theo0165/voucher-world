@@ -144,4 +144,13 @@ export default class Game {
       new Player(this.display, this.game, username, color, id, x, y)
     );
   }
+
+  removePlayer(id: string) {
+    this.players.forEach((player, index) => {
+      if (player.id == id) {
+        this.display.removeChild(player.container);
+        this.players.splice(index, 1);
+      }
+    });
+  }
 }
