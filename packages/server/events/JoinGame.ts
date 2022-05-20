@@ -12,6 +12,6 @@ export default async (socket: Socket, io: Server) => {
 
     socket.emit('join ok', { player: data, room });
 
-    io.in(room.id).emit('new player', data);
+    io.to(room.id).emit('new player', data);
   });
 };

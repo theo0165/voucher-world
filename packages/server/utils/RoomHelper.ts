@@ -3,8 +3,6 @@ import Room from '../types/Room';
 
 const rooms: Room[] = [];
 
-//console.log(parseInt(process.env.MAX_PLAYER!));
-
 export const joinRoom = (player: Player): Room => {
   let hasJoined = false;
   let roomToJoin: Room | null = null;
@@ -12,7 +10,7 @@ export const joinRoom = (player: Player): Room => {
   // If no rooms are availible, create one
   if (rooms.length == 0) {
     const room = {
-      id: '0',
+      id: 'room-0',
       players: [player],
     };
 
@@ -29,6 +27,8 @@ export const joinRoom = (player: Player): Room => {
 
       hasJoined = true;
       roomToJoin = room;
+
+      return;
     }
   });
 
@@ -38,7 +38,7 @@ export const joinRoom = (player: Player): Room => {
 
   // No free rooms, create new
   const newRoom = {
-    id: 'rooms.length',
+    id: `room-${rooms.length}`,
     players: [player],
   };
 

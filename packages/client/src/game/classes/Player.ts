@@ -23,7 +23,9 @@ export default class Player {
     app: Application,
     name: string,
     color: string,
-    id: string
+    id: string,
+    x: number,
+    y: number
   ) {
     this.name = name;
     this.color = color;
@@ -33,6 +35,9 @@ export default class Player {
 
     this.container = new Container();
     this.loadSprite();
+
+    this.container.position.x = x;
+    this.container.position.y = y;
   }
 
   private loadSprite() {
@@ -49,10 +54,7 @@ export default class Player {
     this.updateSprite('down', true); // Change to idle
   }
 
-  private updateSprite(
-    direction: 'up' | 'down' | 'left' | 'right',
-    isIdle = false
-  ) {
+  updateSprite(direction: 'up' | 'down' | 'left' | 'right', isIdle = false) {
     this.currentDirection = direction;
     this.isIdle = isIdle;
     this.container.removeChildren(0);
