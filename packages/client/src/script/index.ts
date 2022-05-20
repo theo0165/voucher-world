@@ -1,16 +1,7 @@
 import '../style/index.scss';
-import { io, Socket } from 'socket.io-client';
+import Player from '../types/Player';
+import socket from './socket';
 
-let socket: Socket;
-
-if (import.meta.env.VITE_SERVER_URL) {
-  socket = io(import.meta.env.VITE_SERVER_URL);
-} else {
-  throw new Error('Server url not defined in env file');
-}
-
-socket.on('pong', () => {
-  console.log('pong');
+socket.on('new player', (data: Player[]) => {
+  console.log({ ev: 'new player', data });
 });
-
-socket.emit('ping');

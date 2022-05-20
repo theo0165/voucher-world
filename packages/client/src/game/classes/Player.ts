@@ -10,6 +10,7 @@ import {
 export default class Player {
   name: string;
   color: string;
+  id: string;
   display: Container;
   container: Container;
   app: Application;
@@ -21,34 +22,42 @@ export default class Player {
     display: Container,
     app: Application,
     name: string,
-    color: string
+    color: string,
+    id: string,
+    x: number,
+    y: number
   ) {
     this.name = name;
     this.color = color;
+    this.id = id;
     this.display = display;
     this.app = app;
 
-    this.loadSprite();
     this.container = new Container();
+    this.loadSprite();
+
+    this.container.position.x = x;
+    this.container.position.y = y;
   }
 
   private loadSprite() {
-    this.app.loader
-      .add('character', '/spritesheets/character/character.json')
-      .load(() => this.draw());
+    if (!this.app.loader.resources['character']) {
+      this.app.loader
+        .add('character', '/spritesheets/character/character.json')
+        .load(() => this.draw());
+    } else {
+      this.draw();
+    }
   }
 
   draw() {
     this.updateSprite('down', true); // Change to idle
   }
 
-  private updateSprite(
-    direction: 'up' | 'down' | 'left' | 'right',
-    isIdle = false
-  ) {
+  updateSprite(direction: 'up' | 'down' | 'left' | 'right', isIdle = false) {
     this.currentDirection = direction;
     this.isIdle = isIdle;
-    this.container.removeChildren();
+    this.container.removeChildren(0);
 
     const sheet = this.app.loader.resources['character'];
 
