@@ -1,4 +1,4 @@
-import { Application, Container } from 'pixi.js';
+import { Application, Container, Sprite } from 'pixi.js';
 import Player from './classes/Player';
 
 export default class Game {
@@ -16,6 +16,9 @@ export default class Game {
     this.game = new Application({
       width: window.innerWidth,
       height: window.innerHeight,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      resizeTo: window,
     });
 
     this.display = this.game.stage;
@@ -24,12 +27,20 @@ export default class Game {
 
     document.body.appendChild(this.game.view);
 
+    this.createBackground();
     this.player.draw();
 
     this.game.ticker.add(this.gameLoop, this);
 
     window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
     window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
+  }
+
+  createBackground() {
+    const background: Sprite = Sprite.from('../../assets/map1.png');
+    background.width = this.game.screen.width;
+    background.height = this.game.screen.height;
+    this.game.stage.addChild(background);
   }
 
   keyDown(e: KeyboardEvent) {
