@@ -25,7 +25,42 @@ export default class Map {
   async draw() {
     const stores = await this.getStores();
 
-    this.drawMap('start');
+    let tilesPlaced = 0;
+    let storesLeft = stores.length;
+
+    while (storesLeft > 0) {
+      if (storesLeft >= 3 && tilesPlaced === 0) {
+        console.log('placing start tile');
+
+        this.drawMap('start', 600, 200);
+        tilesPlaced++;
+        storesLeft -= 3;
+
+        continue;
+      }
+
+      if (storesLeft > 3 && tilesPlaced > 0) {
+        console.log('placing middle tile');
+
+        this.drawMap('middle', 200, 200);
+        tilesPlaced++;
+        storesLeft -= 3;
+
+        continue;
+      }
+
+      if (storesLeft <= 3) {
+        console.log('placing end tile');
+
+        this.drawMap('start', 200, 200);
+        tilesPlaced++;
+        storesLeft -= 3;
+
+        continue;
+      }
+
+      break;
+    }
   }
 
   private async getStores(): Promise<Store[]> {
@@ -44,13 +79,13 @@ export default class Map {
     return [];
   }
 
-  drawMap(type: 'middle' | 'start' | 'end') {
-    console.log(this.app.view.width / 2);
+  drawMap(type: 'middle' | 'start' | 'end', x: number, y: number) {
+    console.log({ x, y });
 
     const texture = Texture.from(`${type}.png`);
     const sprite = new Sprite(texture);
-    sprite.position.x = this.display.width / 2;
-    sprite.position.y = this.display.height / 2;
+    sprite.position.x = x;
+    sprite.position.y = y;
     this.display.addChild(sprite);
   }
 
