@@ -19,6 +19,7 @@ Add the installation instructions.
 -   [#7 - Add character animation and size character correctly](https://github.com/theo0165/voucher-world/pull/7)
 -   [#8 - Basic multiplayer support](https://github.com/theo0165/voucher-world/pull/8)
 -   [#9 - Add test map (start and mid)](https://github.com/theo0165/voucher-world/pull/9)
+-   [#11 - Generate map based on the amount of stores in the database](https://github.com/theo0165/voucher-world/pull/11)
 
 # Code Review
 
