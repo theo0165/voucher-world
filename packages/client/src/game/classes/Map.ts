@@ -33,6 +33,4 @@ export default class Map {
     this.midSprite.x = 50;
     this.display.addChild(this.midSprite);
   }
-
-  drawEndMap() {}
 }
