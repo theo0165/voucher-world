@@ -3,12 +3,14 @@ import Player from './classes/Player';
 import GameType from '../types/GameType';
 import PlayerType from '../types/Player';
 import socket from '../script/socket';
+import Map from './classes/Map';
 
 export default class Game {
   player: Player;
   players: Player[] = [];
   game: Application;
   display: Container;
+  map: Map;
   keysPressed: { [key: string]: boolean } = {
     ArrowLeft: false,
     ArrowRight: false,
@@ -22,6 +24,9 @@ export default class Game {
     this.game = new Application({
       width: window.innerWidth,
       height: window.innerHeight,
+      resolution: window.devicePixelRatio || 1,
+      autoDensity: true,
+      resizeTo: window,
     });
 
     this.display = this.game.stage;
@@ -63,7 +68,7 @@ export default class Game {
       });
     }, 1000 / 60);
 
-    socket.on('player move', (state) => {
+    socket.on('player move', (state: any) => {
       const playerToUpdate = this.players.filter((player) => {
         if (this.player.id == player.id) {
           return false;
@@ -89,8 +94,11 @@ export default class Game {
       }
     });
 
+    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
+
     document.body.appendChild(this.game.view);
 
+    this.map = new Map(this.game, this.display);
     this.game.ticker.add(this.gameLoop, this);
 
     window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
