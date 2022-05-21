@@ -34,10 +34,15 @@ export default class Player {
     this.app = app;
 
     this.container = new Container();
-    this.loadSprite();
+    console.log({
+      playerX: app.renderer.screen.width / 2,
+      playerY: app.renderer.screen.height / 2,
+    });
 
-    this.container.position.x = x;
-    this.container.position.y = y;
+    this.container.position.x = app.renderer.screen.width / 2;
+    this.container.position.y = app.renderer.screen.height / 2;
+    this.container.zIndex = 9999;
+    this.loadSprite();
   }
 
   private loadSprite() {
@@ -51,7 +56,7 @@ export default class Player {
   }
 
   draw() {
-    this.updateSprite('down', true); // Change to idle
+    this.updateSprite('down', true);
   }
 
   updateSprite(direction: 'up' | 'down' | 'left' | 'right', isIdle = false) {
