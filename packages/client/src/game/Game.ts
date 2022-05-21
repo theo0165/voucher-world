@@ -31,6 +31,8 @@ export default class Game {
 
     this.display = this.game.stage;
 
+    this.map = new Map(this.game, this.display);
+
     game.room.players
       .filter((player) => player.id != game.player.id)
       .forEach((player) => {
@@ -98,7 +100,6 @@ export default class Game {
 
     document.body.appendChild(this.game.view);
 
-    this.map = new Map(this.game, this.display);
     this.game.ticker.add(this.gameLoop, this);
 
     window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
@@ -145,6 +146,22 @@ export default class Game {
 
   private gameLoop() {
     this.player.move(this.keysPressed);
+
+    const x =
+      this.player.container.position.x > 0
+        ? -Math.abs(this.player.container.position.x)
+        : Math.abs(this.player.container.position.x);
+    const y =
+      this.player.container.position.y > 0
+        ? -Math.abs(this.player.container.position.y)
+        : Math.abs(this.player.container.position.y);
+
+    this.display.position.set(
+      this.game.screen.width / 2,
+      this.game.screen.height / 2
+    );
+
+    this.display.pivot.copyFrom(this.player.container.position);
   }
 
   addPlayer({ username, color, id, x, y }: PlayerType) {
