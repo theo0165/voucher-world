@@ -17,7 +17,7 @@ Add the installation instructions.
 -   [#5 - Basic classes (player and game). Move player. Eslint.](https://github.com/theo0165/voucher-world/pull/5)
 -   [#6 - Add supabase + basic GET api](https://github.com/theo0165/voucher-world/pull/6)
 -   [#7 - Add character animation and size character correctly](https://github.com/theo0165/voucher-world/pull/7)
--   [#7 - Add character animation and size character correctly](https://github.com/theo0165/voucher-world/pull/7)
+-   [#8 - Basic multiplayer support](https://github.com/theo0165/voucher-world/pull/8)
 -   [#9 - Add test map (start and mid)](https://github.com/theo0165/voucher-world/pull/9)
 
 # Code Review
