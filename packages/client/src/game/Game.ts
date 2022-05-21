@@ -1,14 +1,16 @@
-import { Application, Container, Sprite } from 'pixi.js';
+import { Application, Container } from 'pixi.js';
 import Player from './classes/Player';
 import GameType from '../types/GameType';
 import PlayerType from '../types/Player';
 import socket from '../script/socket';
+import Map from './classes/Map';
 
 export default class Game {
   player: Player;
   players: Player[] = [];
   game: Application;
   display: Container;
+  map: Map;
   keysPressed: { [key: string]: boolean } = {
     ArrowLeft: false,
     ArrowRight: false,
@@ -92,20 +94,15 @@ export default class Game {
       }
     });
 
+    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
+
     document.body.appendChild(this.game.view);
 
+    this.map = new Map(this.game, this.display);
     this.game.ticker.add(this.gameLoop, this);
-    this.createBackground();
 
     window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
     window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
-  }
-
-  createBackground() {
-    const background: Sprite = Sprite.from('../../assets/map1.png');
-    background.width = this.game.screen.width;
-    background.height = this.game.screen.height;
-    this.game.stage.addChild(background);
   }
 
   private keyDown(e: KeyboardEvent) {
