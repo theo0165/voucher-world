@@ -1,4 +1,7 @@
 import { Application, Container, Loader, Sprite, Texture } from 'pixi.js';
+import urlBuilder from '../../helpers/urlBuilder';
+import Store from '../../types/Store';
+import StoreApiResult from '../../types/StoreApiResult';
 
 export default class Map {
   app: Application;
@@ -19,8 +22,26 @@ export default class Map {
     // this.loader.load(() => this.drawMidMap());
   }
 
-  draw() {
+  async draw() {
+    const stores = await this.getStores();
+
     this.drawMap('start');
+  }
+
+  private async getStores(): Promise<Store[]> {
+    const req = await fetch(urlBuilder('/api/store'));
+
+    if (req.ok) {
+      const stores: StoreApiResult = await req.json();
+
+      if (stores.successful) {
+        return stores.data;
+      }
+
+      return [];
+    }
+
+    return [];
   }
 
   drawMap(type: 'middle' | 'start' | 'end') {
