@@ -14,8 +14,23 @@ export default class Map {
     this.display = display;
     this.loader = Loader.shared;
     this.loader.add('map', '/spritesheets/map/map.json');
-    this.loader.load(() => this.drawStartMap());
-    this.loader.load(() => this.drawMidMap());
+    this.loader.load(() => this.draw());
+    // this.loader.load(() => this.drawStartMap());
+    // this.loader.load(() => this.drawMidMap());
+  }
+
+  draw() {
+    this.drawMap('start');
+  }
+
+  drawMap(type: 'middle' | 'start' | 'end') {
+    console.log(this.app.view.width / 2);
+
+    const texture = Texture.from(`${type}.png`);
+    const sprite = new Sprite(texture);
+    sprite.position.x = this.display.width / 2;
+    sprite.position.y = this.display.height / 2;
+    this.display.addChild(sprite);
   }
 
   drawStartMap() {
