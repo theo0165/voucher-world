@@ -22,6 +22,7 @@ Add the installation instructions.
 -   [#10 - Make game fullscreen and position absolute](https://github.com/theo0165/voucher-world/pull/10)
 -   [#11 - Generate map based on the amount of stores in the database](https://github.com/theo0165/voucher-world/pull/11)
 -   [#12 - Add correct z-index for container children + cleanup](https://github.com/theo0165/voucher-world/pull/12)
+-   [#13 - Add preloader for assets + preloading screen](https://github.com/theo0165/voucher-world/pull/13)
 
 # Code Review
 
