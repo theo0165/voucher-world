@@ -11,16 +11,15 @@ export default class Map {
   loader: Loader;
   startTexture!: Texture;
   midTexture!: Texture;
+  isLoaded = false;
 
   constructor(app: Application, display: Container) {
     this.app = app;
     this.display = display;
     this.loader = Loader.shared;
-    this.loader.add('map', '/spritesheets/map/map.json');
-    this.loader.load(() => this.draw());
   }
 
-  private async draw() {
+  async draw() {
     const stores = await this.getStores();
 
     const tileWidth = 350;
@@ -73,6 +72,8 @@ export default class Map {
 
       break;
     }
+
+    this.isLoaded = true;
   }
 
   private async getStores(): Promise<Store[]> {
@@ -94,11 +95,14 @@ export default class Map {
   private drawMap(type: 'middle' | 'start' | 'end', x: number, y: number) {
     console.log({ x, y });
 
-    const texture = Texture.from(`${type}.png`);
-    const sprite = new Sprite(texture);
-    sprite.position.x = x;
-    sprite.position.y = y;
-    sprite.zIndex = 1;
-    this.display.addChild(sprite);
+    if (this.app.loader.resources['map'].textures) {
+      const sprite = new Sprite(
+        this.app.loader.resources['map'].textures[`${type}.png`]
+      );
+      sprite.position.x = x;
+      sprite.position.y = y;
+      sprite.zIndex = 1;
+      this.display.addChild(sprite);
+    }
   }
 }

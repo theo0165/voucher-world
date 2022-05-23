@@ -4,6 +4,8 @@ import GameType from '../types/GameType';
 import PlayerType from '../types/Player';
 import socket from '../script/socket';
 import Map from './classes/Map';
+import { Preloader } from './classes/Preloader';
+import { LoadingScene } from './classes/LoadingScene';
 
 export default class Game {
   player: Player;
@@ -17,8 +19,14 @@ export default class Game {
     ArrowDown: false,
     ArrowUp: false,
   };
+  gameState: GameType;
+  playerName: string;
+  loadingScene = new LoadingScene();
+  isLoaded = false;
 
   constructor(playerName: string, game: GameType) {
+    this.gameState = game;
+    this.playerName = playerName;
     console.log({ game });
 
     this.game = new Application({
@@ -32,68 +40,18 @@ export default class Game {
     this.display = this.game.stage;
     this.display.sortableChildren = true;
 
-    this.map = new Map(this.game, this.display);
+    this.loadingScene.create(this.game);
 
-    game.room.players
-      .filter((player) => player.id != game.player.id)
-      .forEach((player) => {
-        this.players.push(
-          new Player(this.display, this.game, player.username, player.id)
-        );
-      });
+    this.map = new Map(this.game, this.display);
 
     this.player = new Player(
       this.display,
       this.game,
-      playerName + ' (local)',
+      this.playerName + ' (local)',
       socket.id
     );
 
-    setInterval(() => {
-      socket.emit('state', {
-        x: this.player.container.position.x,
-        y: this.player.container.position.y,
-        direction: this.player.currentDirection,
-        isIdle: this.player.isIdle,
-        roomId: game.room.id,
-        id: this.player.id,
-      });
-    }, 1000 / 60);
-
-    socket.on('player move', (state: any) => {
-      const playerToUpdate = this.players.filter((player) => {
-        if (this.player.id == player.id) {
-          return false;
-        }
-
-        if (player.id == state.id) {
-          return true;
-        }
-
-        return false;
-      });
-
-      if (playerToUpdate.length > 0) {
-        playerToUpdate[0].container.position.x = state.x;
-        playerToUpdate[0].container.position.y = state.y;
-
-        if (
-          playerToUpdate[0].currentDirection != state.direction ||
-          playerToUpdate[0].isIdle != state.isIdle
-        ) {
-          playerToUpdate[0].updateSprite(state.direction, state.isIdle);
-        }
-      }
-    });
-
-    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
-
-    document.body.appendChild(this.game.view);
-
-    this.game.ticker.add(this.gameLoop, this);
-
-    window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
-    window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
+    Preloader.loadAssets(this);
   }
 
   private keyDown(e: KeyboardEvent) {
@@ -135,6 +93,11 @@ export default class Game {
   }
 
   private gameLoop() {
+    if (this.player.isLoaded && this.map.isLoaded && !this.isLoaded) {
+      this.loadingScene.remove(this.display);
+      this.isLoaded = true;
+    }
+
     this.player.move(this.keysPressed);
 
     this.display.position.set(
@@ -156,5 +119,64 @@ export default class Game {
         this.players.splice(index, 1);
       }
     });
+  }
+
+  startGame() {
+    this.map.draw();
+    this.player.draw();
+
+    this.gameState.room.players
+      .filter((player) => player.id != this.gameState.player.id)
+      .forEach((player) => {
+        this.players.push(
+          new Player(this.display, this.game, player.username, player.id)
+        );
+      });
+
+    setInterval(() => {
+      socket.emit('state', {
+        x: this.player.container.position.x,
+        y: this.player.container.position.y,
+        direction: this.player.currentDirection,
+        isIdle: this.player.isIdle,
+        roomId: this.gameState.room.id,
+        id: this.player.id,
+      });
+    }, 1000 / 60);
+
+    socket.on('player move', (state: any) => {
+      const playerToUpdate = this.players.filter((player) => {
+        if (this.player.id == player.id) {
+          return false;
+        }
+
+        if (player.id == state.id) {
+          return true;
+        }
+
+        return false;
+      });
+
+      if (playerToUpdate.length > 0) {
+        playerToUpdate[0].container.position.x = state.x;
+        playerToUpdate[0].container.position.y = state.y;
+
+        if (
+          playerToUpdate[0].currentDirection != state.direction ||
+          playerToUpdate[0].isIdle != state.isIdle
+        ) {
+          playerToUpdate[0].updateSprite(state.direction, state.isIdle);
+        }
+      }
+    });
+
+    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
+
+    document.body.appendChild(this.game.view);
+
+    this.game.ticker.add(this.gameLoop, this);
+
+    window.addEventListener('keydown', (e: KeyboardEvent) => this.keyDown(e));
+    window.addEventListener('keyup', (e: KeyboardEvent) => this.keyUp(e));
   }
 }
