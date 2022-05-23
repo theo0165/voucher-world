@@ -24,7 +24,7 @@ export default class Map {
     const stores = await this.getStores();
 
     const tileWidth = 350;
-    const tileHeight = 252;
+    // const tileHeight = 252;
 
     const startX = 600;
     const startY = 200;

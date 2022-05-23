@@ -18,7 +18,7 @@ export default class Game {
     ArrowUp: false,
   };
 
-  constructor(playerName: string, color: string, game: GameType) {
+  constructor(playerName: string, game: GameType) {
     console.log({ game });
 
     this.game = new Application({
@@ -30,6 +30,7 @@ export default class Game {
     });
 
     this.display = this.game.stage;
+    this.display.sortableChildren = true;
 
     this.map = new Map(this.game, this.display);
 
@@ -37,15 +38,7 @@ export default class Game {
       .filter((player) => player.id != game.player.id)
       .forEach((player) => {
         this.players.push(
-          new Player(
-            this.display,
-            this.game,
-            player.username,
-            'green',
-            player.id,
-            player.x,
-            player.y
-          )
+          new Player(this.display, this.game, player.username, player.id)
         );
       });
 
@@ -53,10 +46,7 @@ export default class Game {
       this.display,
       this.game,
       playerName + ' (local)',
-      color,
-      socket.id,
-      50,
-      50
+      socket.id
     );
 
     setInterval(() => {
@@ -147,15 +137,6 @@ export default class Game {
   private gameLoop() {
     this.player.move(this.keysPressed);
 
-    const x =
-      this.player.container.position.x > 0
-        ? -Math.abs(this.player.container.position.x)
-        : Math.abs(this.player.container.position.x);
-    const y =
-      this.player.container.position.y > 0
-        ? -Math.abs(this.player.container.position.y)
-        : Math.abs(this.player.container.position.y);
-
     this.display.position.set(
       this.game.screen.width / 2,
       this.game.screen.height / 2
@@ -164,10 +145,8 @@ export default class Game {
     this.display.pivot.copyFrom(this.player.container.position);
   }
 
-  addPlayer({ username, color, id, x, y }: PlayerType) {
-    this.players.push(
-      new Player(this.display, this.game, username, color, id, x, y)
-    );
+  addPlayer({ username, id }: PlayerType) {
+    this.players.push(new Player(this.display, this.game, username, id));
   }
 
   removePlayer(id: string) {

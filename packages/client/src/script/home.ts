@@ -10,16 +10,13 @@ if (inputField && submitBtn) {
   submitBtn.addEventListener('click', () => {
     socket.emit('join game', {
       username: inputField.value,
-      x: 0,
-      y: 0,
-      color: 'white',
       id: socket.id,
     });
   });
 }
 
 socket.on('join ok', (data) => {
-  game = new Game(data.player.username, 'red', data);
+  game = new Game(data.player.username, data);
 });
 
 socket.on('new player', (player: PlayerType) => {

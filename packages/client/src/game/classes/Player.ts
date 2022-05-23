@@ -9,7 +9,6 @@ import {
 
 export default class Player {
   name: string;
-  color: string;
   id: string;
   display: Container;
   container: Container;
@@ -18,17 +17,8 @@ export default class Player {
   currentDirection: 'up' | 'down' | 'left' | 'right' = 'down';
   isIdle = false;
 
-  constructor(
-    display: Container,
-    app: Application,
-    name: string,
-    color: string,
-    id: string,
-    x: number,
-    y: number
-  ) {
+  constructor(display: Container, app: Application, name: string, id: string) {
     this.name = name;
-    this.color = color;
     this.id = id;
     this.display = display;
     this.app = app;
