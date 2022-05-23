@@ -16,6 +16,7 @@ export default class Player {
   sprite: AnimatedSprite | null = null;
   currentDirection: 'up' | 'down' | 'left' | 'right' = 'down';
   isIdle = false;
+  isLoaded = false;
 
   constructor(display: Container, app: Application, name: string, id: string) {
     this.name = name;
@@ -31,18 +32,7 @@ export default class Player {
 
     this.container.position.x = app.renderer.screen.width / 2;
     this.container.position.y = app.renderer.screen.height / 2;
-    this.container.zIndex = 9999;
-    this.loadSprite();
-  }
-
-  private loadSprite() {
-    if (!this.app.loader.resources['character']) {
-      this.app.loader
-        .add('character', '/spritesheets/character/character.json')
-        .load(() => this.draw());
-    } else {
-      this.draw();
-    }
+    this.container.zIndex = 2;
   }
 
   draw() {
@@ -80,6 +70,7 @@ export default class Player {
     }
 
     this.display.addChild(this.container);
+    this.isLoaded = true;
   }
 
   move(keys: { [key: string]: boolean }) {
