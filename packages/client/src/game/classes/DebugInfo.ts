@@ -3,7 +3,7 @@ import Player from './Player';
 
 class DebugInfo {
   static create(game: Game) {
-    console.log('hello');
+    if (!import.meta.env.DEV) return;
 
     const debugBox = document.createElement('div');
 
@@ -15,6 +15,8 @@ class DebugInfo {
   }
 
   static update(game: Game, players: Player[]) {
+    if (!import.meta.env.DEV) return;
+
     const debugBox = document.querySelector('#debug');
 
     if (debugBox) {

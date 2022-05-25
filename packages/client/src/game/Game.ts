@@ -38,9 +38,7 @@ export default class Game {
       resizeTo: window,
     });
 
-    if (import.meta.env.DEV) {
-      DebugInfo.create(game);
-    }
+    DebugInfo.create(game);
 
     this.display = this.game.stage;
     this.display.sortableChildren = true;
@@ -116,9 +114,7 @@ export default class Game {
   addPlayer({ username, id }: PlayerType) {
     this.players.push(new Player(this.display, this.game, username, id));
 
-    if (import.meta.env.DEV) {
-      DebugInfo.update(this.gameState, this.players);
-    }
+    DebugInfo.update(this.gameState, this.players);
   }
 
   removePlayer(id: string) {
@@ -129,9 +125,7 @@ export default class Game {
       }
     });
 
-    if (import.meta.env.DEV) {
-      DebugInfo.update(this.gameState, this.players);
-    }
+    DebugInfo.update(this.gameState, this.players);
   }
 
   startGame() {
@@ -146,9 +140,7 @@ export default class Game {
         );
       });
 
-    if (import.meta.env.DEV) {
-      DebugInfo.update(this.gameState, this.players);
-    }
+    DebugInfo.update(this.gameState, this.players);
 
     setInterval(() => {
       socket.emit('state', {

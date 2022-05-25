@@ -18,7 +18,7 @@ export class LoadingScene {
 
   create(app: Application) {
     this.bg.beginFill(0x00ff00);
-    this.bg.drawRect(0, 0, app.renderer.width / 2, app.renderer.height / 2);
+    this.bg.drawRect(0, 0, app.renderer.width, app.renderer.height);
     this.bg.endFill();
     this.bg.zIndex = 99999;
 
