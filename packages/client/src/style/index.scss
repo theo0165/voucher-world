@@ -1,15 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-
-// body {
-//   background: #000;
-//   width: 100%;
-//   height: 100%;
-//   overflow: hidden;
-// }
 
 canvas {
   position: absolute;
@@ -28,4 +23,216 @@ canvas {
   background: black;
   color: white;
   padding: 10px;
+}
+
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+}
+
+.hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    image-rendering: pixelated;
+  }
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: white;
+  background: rgba(51, 51, 51, 0.6);
+  display: flex;
+  align-items: center;
+
+  div {
+    display: inline-block;
+    margin-left: 48px;
+  }
+
+  h1 {
+    font-size: 96px;
+    padding-bottom: 8px;
+  }
+
+  p {
+    font-size: 32px;
+    max-width: 630px;
+    padding-bottom: 16px;
+  }
+
+  button {
+    font-size: 32px;
+    font-weight: 700;
+    padding: 16px 27px;
+    color: white;
+    border: none;
+    background: #89e3d2;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+.modal {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(51, 51, 51, 0.6);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s;
+
+  .modalContent {
+    position: absolute;
+    background: white;
+    width: 660px;
+    height: 390px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: -100%;
+    transition: all 0.5s;
+
+    #closeBtn {
+      display: inline-block;
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      font-size: 24px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      height: 100%;
+    }
+
+    .inputs {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      > div {
+        padding-bottom: 24px;
+
+        &.required label::after {
+          content: '*';
+          color: #e74c3c;
+          padding-left: 4px;
+        }
+      }
+
+      label {
+        display: block;
+        font-size: 24px;
+        padding-bottom: 10px;
+      }
+
+      input {
+        width: 100%;
+        padding: 6px 10px;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+
+      button {
+        width: 100%;
+        background: #89e3d2;
+        border: none;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .error {
+        padding-top: 5px;
+        color: #e74c3c;
+      }
+    }
+
+    .character {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 180px;
+        height: 200px;
+        image-rendering: pixelated;
+      }
+    }
+  }
+}
+
+.mobileInfo {
+  display: none;
+  pointer-events: none;
+  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+
+  p {
+    padding: 24px;
+  }
+}
+
+.modalOpen {
+  .modal {
+    display: block;
+    pointer-events: all;
+    opacity: 1;
+    margin-top: 0;
+
+    .modalContent {
+      margin-top: 0;
+    }
+  }
+}
+
+.mobile {
+  .mobileInfo {
+    display: flex;
+    pointer-events: all;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  .hero {
+    display: none;
+  }
 }
