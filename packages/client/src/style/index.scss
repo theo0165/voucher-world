@@ -91,7 +91,7 @@ body {
 }
 
 .modal {
-  display: block;
+  display: none;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -108,7 +108,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 
-    .closeBtn {
+    #closeBtn {
       display: inline-block;
       position: absolute;
       top: 24px;
@@ -176,5 +176,11 @@ body {
         image-rendering: pixelated;
       }
     }
+  }
+}
+
+.modalOpen {
+  .modal {
+    display: block;
   }
 }
