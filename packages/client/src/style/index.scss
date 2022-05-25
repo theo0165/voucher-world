@@ -17,5 +17,15 @@ canvas {
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 99999999;
+  z-index: 99;
+}
+
+#debug {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  background: black;
+  color: white;
+  padding: 10px;
 }
