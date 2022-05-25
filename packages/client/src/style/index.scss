@@ -189,6 +189,25 @@ body {
   }
 }
 
+.mobileInfo {
+  display: none;
+  pointer-events: none;
+  z-index: 999999;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+
+  p {
+    padding: 24px;
+  }
+}
+
 .modalOpen {
   .modal {
     display: block;
@@ -199,5 +218,20 @@ body {
     .modalContent {
       margin-top: 0;
     }
+  }
+}
+
+.mobile {
+  .mobileInfo {
+    display: flex;
+    pointer-events: all;
+  }
+
+  .modal {
+    display: none;
+  }
+
+  body {
+    overflow: hidden;
   }
 }

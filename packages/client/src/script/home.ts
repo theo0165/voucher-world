@@ -7,6 +7,14 @@ const usernameInput = document.querySelector('input');
 const usernameInputContainer = document.querySelector('.usernameInput');
 let game: Game | undefined;
 
+if (
+  navigator.userAgent.toLocaleLowerCase().includes('iphone') ||
+  navigator.userAgent.toLocaleLowerCase().includes('ipad') ||
+  navigator.userAgent.toLocaleLowerCase().includes('android')
+) {
+  document.body.classList.add('mobile');
+}
+
 const inputError = (el: Element, errorText: string) => {
   const errorBox = el.querySelector('.error');
 
