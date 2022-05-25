@@ -137,18 +137,18 @@ body {
       justify-content: center;
       > div {
         padding-bottom: 24px;
+
+        &.required label::after {
+          content: '*';
+          color: #e74c3c;
+          padding-left: 4px;
+        }
       }
 
       label {
         display: block;
         font-size: 24px;
         padding-bottom: 10px;
-
-        &::after {
-          content: '*';
-          color: #e74c3c;
-          padding-left: 4px;
-        }
       }
 
       input {
@@ -168,6 +168,11 @@ body {
         padding: 10px;
         border-radius: 5px;
         cursor: pointer;
+      }
+
+      .error {
+        padding-top: 5px;
+        color: #e74c3c;
       }
     }
 
