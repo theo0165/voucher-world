@@ -24,6 +24,7 @@ Add the installation instructions.
 -   [#12 - Add correct z-index for container children + cleanup](https://github.com/theo0165/voucher-world/pull/12)
 -   [#13 - Add preloader for assets + preloading screen](https://github.com/theo0165/voucher-world/pull/13)
 -   [#14 - Add debug info when in dev mode, change size of loading screen](https://github.com/theo0165/voucher-world/pull/14)
+-   [#15 - Fix bug where game reloaded when pressing spacebar](https://github.com/theo0165/voucher-world/pull/15)
 
 # Code Review
 
