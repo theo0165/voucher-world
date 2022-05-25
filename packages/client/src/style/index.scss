@@ -29,3 +29,32 @@ canvas {
   color: white;
   padding: 10px;
 }
+
+html,
+body,
+main {
+  width: 100%;
+  height: 100%;
+}
+
+.hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .content {
+    position: absolute;
+    top: 0;
+  }
+}
+
+.modal {
+  display: none;
+}

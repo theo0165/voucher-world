@@ -8,11 +8,30 @@
     <link rel="stylesheet" href="./src/style/index.scss" />
   </head>
   <body>
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" />
-    </div>
-    <button id="send">Join</button>
+    <main>
+      <div class="hero">
+        <img src="assets/images/hero.jpeg" alt="" />
+        <div class="content">
+          <h1>Voucher World</h1>
+          <p>
+            Collect vouchers and offers from your favourite stores in an
+            interactive game.
+          </p>
+          <button id="openBtn">Play the game</button>
+        </div>
+      </div>
+      <div class="modal">
+        <div>
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+        <button id="send">Join</button>
+      </div>
+    </main>
     <script src="./src/script/home.ts" type="module"></script>
   </body>
 </html>
