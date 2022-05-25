@@ -10,7 +10,7 @@ let game: Game | undefined;
 console.log(navigator.maxTouchPoints);
 
 if (
-  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|Xbox|Playstation/i.test(
     navigator.userAgent
   ) ||
   navigator.maxTouchPoints > 0
