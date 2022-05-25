@@ -23,15 +23,25 @@
         </div>
       </div>
       <div class="modal">
-        <div>
-          <label for="username">Username</label>
-          <input type="text" id="username" name="username" />
+        <div class="modalContent">
+          <div class="closeBtn">X</div>
+          <div class="grid">
+            <div class="inputs">
+              <div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <button id="joinBtn">Join the game</button>
+            </div>
+            <div class="character">
+              <img src="assets/images/character.png" alt="" />
+            </div>
+          </div>
         </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" />
-        </div>
-        <button id="send">Join</button>
       </div>
     </main>
     <script src="./src/script/home.ts" type="module"></script>

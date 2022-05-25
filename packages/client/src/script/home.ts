@@ -3,7 +3,7 @@ import socket from './socket';
 import PlayerType from '../types/Player';
 
 const inputField = document.querySelector('input');
-const submitBtn = document.querySelector('button');
+const submitBtn = document.querySelector('#joinBtn');
 let game: Game | undefined;
 
 if (inputField && submitBtn) {
