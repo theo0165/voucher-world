@@ -25,6 +25,8 @@ Add the installation instructions.
 -   [#13 - Add preloader for assets + preloading screen](https://github.com/theo0165/voucher-world/pull/13)
 -   [#14 - Add debug info when in dev mode, change size of loading screen](https://github.com/theo0165/voucher-world/pull/14)
 
+-   [#16 - Homepage](https://github.com/theo0165/voucher-world/pull/16)
+
 # Code Review
 
 1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
