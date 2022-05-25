@@ -7,10 +7,13 @@ const usernameInput = document.querySelector('input');
 const usernameInputContainer = document.querySelector('.usernameInput');
 let game: Game | undefined;
 
+console.log(navigator.maxTouchPoints);
+
 if (
-  navigator.userAgent.toLocaleLowerCase().includes('iphone') ||
-  navigator.userAgent.toLocaleLowerCase().includes('ipad') ||
-  navigator.userAgent.toLocaleLowerCase().includes('android')
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone/i.test(
+    navigator.userAgent
+  ) ||
+  navigator.maxTouchPoints > 0
 ) {
   document.body.classList.add('mobile');
 }
