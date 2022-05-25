@@ -1,7 +1,6 @@
 const openModalBtn = document.querySelector('#openBtn');
 const closeModalBtn = document.querySelector('#closeBtn');
 const modal = document.querySelector('.modal');
-const modalContent = document.querySelector('.modal-content');
 
 const closeModal = () => {
   if (document.body.classList.contains('modalOpen')) {
