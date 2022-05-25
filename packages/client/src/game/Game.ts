@@ -54,6 +54,12 @@ export default class Game {
       socket.id
     );
 
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+      }
+    });
+
     Preloader.loadAssets(this);
   }
 
