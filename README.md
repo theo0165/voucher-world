@@ -23,6 +23,7 @@ Add the installation instructions.
 -   [#11 - Generate map based on the amount of stores in the database](https://github.com/theo0165/voucher-world/pull/11)
 -   [#12 - Add correct z-index for container children + cleanup](https://github.com/theo0165/voucher-world/pull/12)
 -   [#13 - Add preloader for assets + preloading screen](https://github.com/theo0165/voucher-world/pull/13)
+-   [#14 - Add debug info when in dev mode, change size of loading screen](https://github.com/theo0165/voucher-world/pull/14)
 
 # Code Review
 
