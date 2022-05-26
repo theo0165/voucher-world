@@ -6,6 +6,7 @@ import socket from '../script/socket';
 import Map from './classes/Map';
 import { Preloader } from './classes/Preloader';
 import { LoadingScene } from './classes/LoadingScene';
+import DebugInfo from './classes/DebugInfo';
 
 export default class Game {
   player: Player;
@@ -39,6 +40,8 @@ export default class Game {
       backgroundColor: 0x89e3d2,
     });
 
+    DebugInfo.create(game);
+
     this.display = this.game.stage;
     this.display.sortableChildren = true;
 
@@ -52,6 +55,12 @@ export default class Game {
       this.playerName + ' (local)',
       socket.id
     );
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+      }
+    });
 
     Preloader.loadAssets(this);
   }
@@ -112,6 +121,8 @@ export default class Game {
 
   addPlayer({ username, id }: PlayerType) {
     this.players.push(new Player(this.display, this.game, username, id));
+
+    DebugInfo.update(this.gameState, this.players);
   }
 
   removePlayer(id: string) {
@@ -121,6 +132,8 @@ export default class Game {
         this.players.splice(index, 1);
       }
     });
+
+    DebugInfo.update(this.gameState, this.players);
   }
 
   startGame() {
@@ -134,6 +147,8 @@ export default class Game {
           new Player(this.display, this.game, player.username, player.id)
         );
       });
+
+    DebugInfo.update(this.gameState, this.players);
 
     setInterval(() => {
       socket.emit('state', {

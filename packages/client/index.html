@@ -8,11 +8,49 @@
     <link rel="stylesheet" href="./src/style/index.scss" />
   </head>
   <body>
-    <div>
-      <label for="username">Username</label>
-      <input type="text" id="username" name="username" />
-    </div>
-    <button id="send">Join</button>
+    <main>
+      <div class="hero">
+        <img src="assets/images/hero.png" alt="" />
+        <div class="content">
+          <div>
+            <h1>Voucher World</h1>
+            <p>
+              Collect vouchers and offers from your favourite stores in an
+              interactive game.
+            </p>
+            <button id="openBtn">Play the game</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal">
+        <div class="modalContent">
+          <div id="closeBtn">X</div>
+          <div class="grid">
+            <div class="inputs">
+              <div class="usernameInput required">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" />
+              </div>
+              <div class="emailInput">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" />
+              </div>
+              <button id="joinBtn">Join the game</button>
+            </div>
+            <div class="character">
+              <img src="assets/images/character.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobileInfo">
+        <p>
+          Voucher World is only playable on a computer. Please visit this site
+          on a computer to continue.
+        </p>
+      </div>
+    </main>
     <script src="./src/script/home.ts" type="module"></script>
+    <script src="./src/script/modal.ts" type="module"></script>
   </body>
 </html>
