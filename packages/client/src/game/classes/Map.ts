@@ -31,21 +31,21 @@ export default class Map {
     const stores = await this.getStores();
 
     const startHousePosition = [
-      [600 + -350, 200 + -280],
+      [600 + -350, 200 + -370],
       [600 + -200, 200 + 150],
       [600 + 173, 200 + -150],
     ];
 
     const midHousePosition = [
-      [149, 257],
-      [257, 581],
-      [691, 300],
+      [-320, -110],
+      [215, -65],
+      [-215, 215],
     ];
 
     const endHousePosition = [
-      [324, 516],
-      [754, 128],
-      [754, 625],
+      [-235, 150],
+      [160, 260],
+      [160, -240],
     ];
 
     const tileWidth = 1075;
