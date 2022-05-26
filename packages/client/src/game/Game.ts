@@ -36,6 +36,8 @@ export default class Game {
       resolution: window.devicePixelRatio || 1,
       autoDensity: true,
       resizeTo: window,
+      antialias: true,
+      backgroundColor: 0x89e3d2,
     });
 
     DebugInfo.create(game);

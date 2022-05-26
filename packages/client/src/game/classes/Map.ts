@@ -1,4 +1,11 @@
-import { Application, Container, Loader, Sprite, Texture } from 'pixi.js';
+import {
+  Application,
+  Container,
+  Loader,
+  SCALE_MODES,
+  Sprite,
+  Texture,
+} from 'pixi.js';
 import urlBuilder from '../../helpers/urlBuilder';
 import Store from '../../types/Store';
 import StoreApiResult from '../../types/StoreApiResult';
@@ -12,6 +19,7 @@ export default class Map {
   startTexture!: Texture;
   midTexture!: Texture;
   isLoaded = false;
+  store!: Store;
 
   constructor(app: Application, display: Container) {
     this.app = app;
@@ -22,20 +30,51 @@ export default class Map {
   async draw() {
     const stores = await this.getStores();
 
-    const tileWidth = 350;
+    const startHousePosition = [
+      [600 + -350, 200 + -370],
+      [600 + -200, 200 + 150],
+      [600 + 173, 200 + -150],
+    ];
+
+    const midHousePosition = [
+      [-320, -110],
+      [215, -65],
+      [-215, 215],
+    ];
+
+    const endHousePosition = [
+      [-235, 150],
+      [160, 260],
+      [160, -240],
+    ];
+
+    const tileWidth = 1075;
     // const tileHeight = 252;
 
     const startX = 600;
+    // const startX = 10;
     const startY = 200;
+    // const startY = 10;
 
     let tilesPlaced = 0;
     let storesLeft = stores.length;
+    let storeIndex = 0;
 
     while (storesLeft > 0) {
       if (storesLeft >= 3 && tilesPlaced === 0) {
         console.log('placing start tile');
 
         this.drawMap('start', startX, startY);
+
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
+          this.drawStore(
+            stores[storeIndex],
+            startHousePosition[i][0],
+            startHousePosition[i][1]
+          );
+          storeIndex++;
+        }
+
         tilesPlaced++;
         storesLeft -= 3;
 
@@ -50,6 +89,18 @@ export default class Map {
           startX - tileWidth * Math.max(1, tilesPlaced),
           startY
         );
+
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
+          this.drawStore(
+            stores[storeIndex],
+            startX -
+              tileWidth * Math.max(1, tilesPlaced) +
+              midHousePosition[i][0],
+            startY + midHousePosition[i][1]
+          );
+          storeIndex++;
+        }
+
         tilesPlaced++;
         storesLeft -= 3;
 
@@ -60,10 +111,22 @@ export default class Map {
         console.log('placing end tile');
 
         this.drawMap(
-          'start',
+          'end',
           startX - tileWidth * Math.max(1, tilesPlaced),
           startY
         );
+
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
+          this.drawStore(
+            stores[storeIndex],
+            startX -
+              tileWidth * Math.max(1, tilesPlaced) +
+              endHousePosition[i][0],
+            startY + endHousePosition[i][1]
+          );
+          storeIndex++;
+        }
+
         tilesPlaced++;
         storesLeft -= 3;
 
@@ -92,6 +155,22 @@ export default class Map {
     return [];
   }
 
+  private drawStore(store: Store, x: number, y: number) {
+    console.log({ x, y });
+    console.log(store);
+
+    if (this.app.loader.resources['map'].textures) {
+      const sprite = new Sprite(
+        this.app.loader.resources['map'].textures['house.png']
+      );
+      sprite.texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
+      sprite.position.x = x;
+      sprite.position.y = y;
+      sprite.zIndex = 2;
+      this.display.addChild(sprite);
+    }
+  }
+
   private drawMap(type: 'middle' | 'start' | 'end', x: number, y: number) {
     console.log({ x, y });
 
@@ -99,6 +178,7 @@ export default class Map {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures[`${type}.png`]
       );
+      sprite.texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 1;
