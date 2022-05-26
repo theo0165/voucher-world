@@ -52,7 +52,9 @@ export default class Map {
     // const tileHeight = 252;
 
     const startX = 600;
+    // const startX = 10;
     const startY = 200;
+    // const startY = 10;
 
     let tilesPlaced = 0;
     let storesLeft = stores.length;
@@ -64,12 +66,7 @@ export default class Map {
 
         this.drawMap('start', startX, startY);
 
-        for (let i = 0; i < 3; i++) {
-          console.log(
-            'house positions start',
-            startHousePosition[i][0],
-            startHousePosition[i][1]
-          );
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
           this.drawStore(
             stores[storeIndex],
             startHousePosition[i][0],
@@ -93,15 +90,16 @@ export default class Map {
           startY
         );
 
-        // for (let i = 0; i < 3; i++) {
-        //   this.drawStore(
-        //     stores[storeIndex],
-        //     (startX - tileWidth * Math.max(1, tilesPlaced)) / 2 +
-        //       midHousePosition[i][0],
-        //     startY / 2 + midHousePosition[i][1]
-        //   );
-        //   storeIndex++;
-        // }
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
+          this.drawStore(
+            stores[storeIndex],
+            startX -
+              tileWidth * Math.max(1, tilesPlaced) +
+              midHousePosition[i][0],
+            startY + midHousePosition[i][1]
+          );
+          storeIndex++;
+        }
 
         tilesPlaced++;
         storesLeft -= 3;
@@ -118,15 +116,16 @@ export default class Map {
           startY
         );
 
-        // for (let i = 0; i < 3; i++) {
-        //   this.drawStore(
-        //     stores[storeIndex],
-        //     (startX - tileWidth * Math.max(1, tilesPlaced)) / 2 +
-        //       endHousePosition[i][0],
-        //     startY / 2 + endHousePosition[i][1]
-        //   );
-        //   storeIndex++;
-        // }
+        for (let i = 0; i < Math.min(storesLeft, 3); i++) {
+          this.drawStore(
+            stores[storeIndex],
+            startX -
+              tileWidth * Math.max(1, tilesPlaced) +
+              endHousePosition[i][0],
+            startY + endHousePosition[i][1]
+          );
+          storeIndex++;
+        }
 
         tilesPlaced++;
         storesLeft -= 3;
