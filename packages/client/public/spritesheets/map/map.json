@@ -1,28 +1,36 @@
 {"frames": {
 
-"middle.png":
+"end.png":
 {
-	"frame": {"x":1,"y":1,"w":350,"h":252},
+	"frame": {"x":0,"y":0,"w":1944,"h":1296},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":350,"h":252},
-	"sourceSize": {"w":350,"h":252}
+	"spriteSourceSize": {"x":0,"y":0,"w":1944,"h":1296},
+	"sourceSize": {"w":1944,"h":1296}
+},
+"middle.png":
+{
+	"frame": {"x":0,"y":1296,"w":1944,"h":1296},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1944,"h":1296},
+	"sourceSize": {"w":1944,"h":1296}
 },
 "start.png":
 {
-	"frame": {"x":353,"y":1,"w":350,"h":252},
+	"frame": {"x":0,"y":2592,"w":1944,"h":1296},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":350,"h":252},
-	"sourceSize": {"w":350,"h":252}
+	"spriteSourceSize": {"x":0,"y":0,"w":1944,"h":1296},
+	"sourceSize": {"w":1944,"h":1296}
 }},
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
 	"image": "map.png",
 	"format": "RGBA8888",
-	"size": {"w":704,"h":254},
+	"size": {"w":1944,"h":3888},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:298a891a37ceb541337f3a098cbe4d07:289f7670fba95710a4858b105cdd97fb:68463c66230aaeb26021edb8ea8cd9b6$"
+	"smartupdate": "$TexturePacker:SmartUpdate:e08f5a058e5bf5e16591663601adbf98:935b5f25b8ee0cff581511fe364a2eb8:68463c66230aaeb26021edb8ea8cd9b6$"
 }
 }

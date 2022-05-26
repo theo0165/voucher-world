@@ -1,4 +1,11 @@
-import { Application, Container, Loader, Sprite, Texture } from 'pixi.js';
+import {
+  Application,
+  Container,
+  Loader,
+  SCALE_MODES,
+  Sprite,
+  Texture,
+} from 'pixi.js';
 import urlBuilder from '../../helpers/urlBuilder';
 import Store from '../../types/Store';
 import StoreApiResult from '../../types/StoreApiResult';
@@ -22,7 +29,7 @@ export default class Map {
   async draw() {
     const stores = await this.getStores();
 
-    const tileWidth = 350;
+    const tileWidth = 1080;
     // const tileHeight = 252;
 
     const startX = 600;
@@ -60,7 +67,7 @@ export default class Map {
         console.log('placing end tile');
 
         this.drawMap(
-          'start',
+          'end',
           startX - tileWidth * Math.max(1, tilesPlaced),
           startY
         );
@@ -99,6 +106,7 @@ export default class Map {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures[`${type}.png`]
       );
+      sprite.texture.baseTexture.scaleMode = SCALE_MODES.LINEAR;
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 1;
