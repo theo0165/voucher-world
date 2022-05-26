@@ -29,7 +29,7 @@ export default class Map {
   async draw() {
     const stores = await this.getStores();
 
-    const tileWidth = 1080;
+    const tileWidth = 1075;
     // const tileHeight = 252;
 
     const startX = 600;
