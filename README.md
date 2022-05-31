@@ -27,6 +27,7 @@ Add the installation instructions.
 -   [#15 - Fix bug where game reloaded when pressing spacebar](https://github.com/theo0165/voucher-world/pull/15)
 -   [#16 - Homepage](https://github.com/theo0165/voucher-world/pull/16)
 -   [#17 - Update background + generate houses](https://github.com/theo0165/voucher-world/pull/17)
+-   [#18 - Collision with houses and map borders](https://github.com/theo0165/voucher-world/pull/18)
 
 # Code Review
 

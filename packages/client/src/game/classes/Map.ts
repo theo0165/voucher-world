@@ -1,6 +1,7 @@
 import {
   Application,
   Container,
+  Graphics,
   Loader,
   SCALE_MODES,
   Sprite,
@@ -9,6 +10,7 @@ import {
 import urlBuilder from '../../helpers/urlBuilder';
 import Store from '../../types/Store';
 import StoreApiResult from '../../types/StoreApiResult';
+import Collision from './Collision';
 
 export default class Map {
   app: Application;
@@ -31,24 +33,24 @@ export default class Map {
     const stores = await this.getStores();
 
     const startHousePosition = [
-      [600 + -350, 200 + -370],
-      [600 + -200, 200 + 150],
-      [600 + 173, 200 + -150],
+      [600 + -520, 200 + -425],
+      [600 + -350, 200 + 90],
+      [600 + 20, 200 + -215],
     ];
 
     const midHousePosition = [
-      [-320, -110],
-      [215, -65],
-      [-215, 215],
+      [-320, -170],
+      [215, -125],
+      [-215, 155],
     ];
 
     const endHousePosition = [
-      [-235, 150],
-      [160, 260],
-      [160, -240],
+      [-235, 90],
+      [160, 200],
+      [160, -300],
     ];
 
-    const tileWidth = 1075;
+    const tileWidth = 1079;
     // const tileHeight = 252;
 
     const startX = 600;
@@ -62,8 +64,6 @@ export default class Map {
 
     while (storesLeft > 0) {
       if (storesLeft >= 3 && tilesPlaced === 0) {
-        console.log('placing start tile');
-
         this.drawMap('start', startX, startY);
 
         for (let i = 0; i < Math.min(storesLeft, 3); i++) {
@@ -82,8 +82,6 @@ export default class Map {
       }
 
       if (storesLeft > 3 && tilesPlaced > 0) {
-        console.log('placing middle tile');
-
         this.drawMap(
           'middle',
           startX - tileWidth * Math.max(1, tilesPlaced),
@@ -108,8 +106,6 @@ export default class Map {
       }
 
       if (storesLeft <= 3) {
-        console.log('placing end tile');
-
         this.drawMap(
           'end',
           startX - tileWidth * Math.max(1, tilesPlaced),
@@ -156,9 +152,6 @@ export default class Map {
   }
 
   private drawStore(store: Store, x: number, y: number) {
-    console.log({ x, y });
-    console.log(store);
-
     if (this.app.loader.resources['map'].textures) {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures['house.png']
@@ -167,13 +160,25 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 2;
+      const bg = new Graphics();
+      bg.beginFill(0xff0000);
+      bg.drawRect(
+        x - sprite.width / 2,
+        y - sprite.height / 2,
+        sprite.width,
+        sprite.height
+      );
+      bg.zIndex = 1;
+      sprite.zIndex = 2;
+
+      Collision.addHouse(sprite);
+
+      this.display.addChild(bg);
       this.display.addChild(sprite);
     }
   }
 
   private drawMap(type: 'middle' | 'start' | 'end', x: number, y: number) {
-    console.log({ x, y });
-
     if (this.app.loader.resources['map'].textures) {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures[`${type}.png`]
@@ -182,7 +187,19 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 1;
+
+      const bg = new Graphics();
+      bg.beginFill(0xff0000);
+      bg.drawRect(
+        x - sprite.width / 2,
+        y - sprite.height / 2,
+        sprite.width,
+        sprite.height
+      );
+
+      Collision.addMapTile(sprite, type);
       this.display.addChild(sprite);
+      this.display.addChild(bg);
     }
   }
 }

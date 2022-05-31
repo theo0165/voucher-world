@@ -7,8 +7,6 @@ const usernameInput = document.querySelector('input');
 const usernameInputContainer = document.querySelector('.usernameInput');
 let game: Game | undefined;
 
-console.log(navigator.maxTouchPoints);
-
 if (
   /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Windows Phone|Xbox|Playstation/i.test(
     navigator.userAgent
@@ -55,8 +53,6 @@ socket.on('join ok', (data) => {
 });
 
 socket.on('new player', (player: PlayerType) => {
-  console.log({ player, gamePlayer: game?.player });
-
   if (game && player.id != game.player.id) {
     game.addPlayer(player);
   }

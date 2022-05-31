@@ -28,7 +28,6 @@ export default class Game {
   constructor(playerName: string, game: GameType) {
     this.gameState = game;
     this.playerName = playerName;
-    console.log({ game });
 
     this.game = new Application({
       width: window.innerWidth,
@@ -186,8 +185,6 @@ export default class Game {
         }
       }
     });
-
-    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
 
     document.body.appendChild(this.game.view);
 

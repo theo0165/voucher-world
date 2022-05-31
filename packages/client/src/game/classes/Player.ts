@@ -5,7 +5,9 @@ import {
   Text,
   TextStyle,
   SCALE_MODES,
+  Sprite,
 } from 'pixi.js';
+import Collision from './Collision';
 
 export default class Player {
   name: string;
@@ -25,10 +27,6 @@ export default class Player {
     this.app = app;
 
     this.container = new Container();
-    console.log({
-      playerX: app.renderer.screen.width / 2,
-      playerY: app.renderer.screen.height / 2,
-    });
 
     this.container.position.x = app.renderer.screen.width / 2;
     this.container.position.y = app.renderer.screen.height / 2;
@@ -60,6 +58,7 @@ export default class Player {
           ? sheet.spritesheet.animations[`char_idle_${direction}`]
           : sheet.spritesheet.animations[`char_${direction}`]
       );
+
       this.sprite.texture.baseTexture.scaleMode = SCALE_MODES.NEAREST;
       this.sprite.width = 64;
       this.sprite.height = 64;
@@ -74,8 +73,48 @@ export default class Player {
   }
 
   move(keys: { [key: string]: boolean }) {
+    let movement = 15;
+
+    Collision.houses.forEach((house: Sprite) => {
+      if (
+        Collision.bump.hit(this.container, house, true, false, true, undefined)
+      ) {
+        movement = 0;
+      }
+    });
+
+    let x = 0;
+    let y = 0;
+    let width = 0;
+    let height = 0;
+
+    Collision.map.forEach((map) => {
+      if (map.type == 'end') {
+        x = map.sprite.position.x - map.sprite.width / 2;
+        y = map.sprite.position.y - map.sprite.height / 2;
+      }
+
+      height = map.sprite.height;
+      width += map.sprite.width / 2;
+    });
+
+    height = 620;
+    width -= 1150;
+
+    Collision.bump.contain(
+      this.container,
+      {
+        x,
+        y,
+        width,
+        height,
+      },
+      true,
+      undefined
+    );
+
     if (keys['ArrowDown']) {
-      this.container.position.y += 5;
+      this.container.position.y += movement;
 
       if (this.currentDirection != 'down' || this.isIdle) {
         this.updateSprite('down');
@@ -85,7 +124,7 @@ export default class Player {
     }
 
     if (keys['ArrowUp']) {
-      this.container.position.y -= 5;
+      this.container.position.y -= movement;
 
       if (this.currentDirection != 'up' || this.isIdle) {
         this.updateSprite('up');
@@ -95,7 +134,7 @@ export default class Player {
     }
 
     if (keys['ArrowRight']) {
-      this.container.position.x += 5;
+      this.container.position.x += movement;
 
       if (this.currentDirection != 'right' || this.isIdle) {
         this.updateSprite('right');
@@ -105,7 +144,7 @@ export default class Player {
     }
 
     if (keys['ArrowLeft']) {
-      this.container.position.x -= 5;
+      this.container.position.x -= movement;
 
       if (this.currentDirection != 'left' || this.isIdle) {
         this.updateSprite('left');
