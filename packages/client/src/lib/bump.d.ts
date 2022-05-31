@@ -3,35 +3,40 @@ import { AnimatedSprite, Circle, Container, Point, Sprite } from 'pixi.js';
 export default class Bump {
   constructor(renderingEngine: string | undefined);
 
-  addCollisionProperties(sprite: Sprite);
+  addCollisionProperties(sprite: Container);
 
-  hitTestPoint(point: Point, sprite: Sprite);
+  hitTestPoint(point: Point, Container: Container);
 
-  hitTestCircle(c1: Sprite, c2: Sprite, global = false);
+  hitTestCircle(c1: Container, c2: Container, global = false);
 
-  circleCollision(c1: Sprite, c2: Sprite, bounce = false, global = false);
+  circleCollision(c1: Container, c2: Container, bounce = false, global = false);
 
-  movingCircleCollision(c1: Sprite, c2: Sprite, global = false);
+  movingCircleCollision(c1: Container, c2: Container, global = false);
 
-  multipleCircleCollision(arrayOfCircles: Sprite[], global = false);
+  multipleCircleCollision(arrayOfCircles: Container[], global = false);
 
-  rectangleCollision(r1: Sprite, r2: Sprite, bounce = false, global = true);
+  rectangleCollision(
+    r1: Container,
+    r2: Container,
+    bounce = false,
+    global = true
+  );
 
-  hitTestRectangle(r1: Sprite, r2: Sprite, global = false);
+  hitTestRectangle(r1: Container, r2: Container, global = false);
 
-  hitTestCircleRectangle(c1: Sprite, r1: Sprite, global = false);
+  hitTestCircleRectangle(c1: Container, r1: Container, global = false);
 
-  hitTestCirclePoint(c1: Sprite, point: Point, global = false);
+  hitTestCirclePoint(c1: Container, point: Point, global = false);
 
   circleRectangleCollision(
-    c1: Sprite,
-    r1: Sprite,
+    c1: Container,
+    r1: Container,
     bounce = false,
     global = false
   );
 
   circlePointCollision(
-    c1: Sprite,
+    c1: Container,
     point: Point,
     bounce = false,
     global = false
@@ -40,19 +45,19 @@ export default class Bump {
   bounceOffSurface(o: any, s: any);
 
   contain(
-    sprite: Sprite,
+    sprite: Container,
     container: { x: number; y: number; width: number; height: number },
     bounce = false,
-    extra: ((collision: Set<boolean> | undefined) => void) | undefined
-  );
+    extra: ((collision: Set<string> | undefined) => void) | undefined
+  ): Set<string>;
 
   outsideBounds(
-    s: Sprite,
+    s: Container,
     bounds: any,
-    extra: ((collision: Set<boolean> | undefined) => void) | undefined
+    extra: ((collision: Set<string> | undefined) => void) | undefined
   );
 
-  _getCenter(o: Sprite, dimension: any, axis: any);
+  _getCenter(o: Container, dimension: any, axis: any);
 
   hit(
     a: Container,
@@ -60,6 +65,6 @@ export default class Bump {
     react = false,
     bounce = false,
     global: boolean,
-    extra = undefined
+    extra: ((collision: Set<string> | undefined) => void) | undefined
   );
 }

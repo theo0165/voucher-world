@@ -82,12 +82,39 @@ export default class Player {
 
     Collision.houses.forEach((house: Sprite) => {
       if (
-        this.sprite &&
-        Collision.bump.hit(this.container, house, true, false, true)
+        Collision.bump.hit(this.container, house, true, false, true, undefined)
       ) {
         movement = 0;
       }
     });
+
+    let x = 0;
+    let y = 0;
+    let width = 0;
+    let height = 0;
+
+    Collision.map.forEach((map) => {
+      if (map.type == 'end') {
+        x = map.sprite.x - map.sprite.width / 2;
+
+        y = map.sprite.y - map.sprite.height / 2;
+      }
+
+      width += map.sprite.width;
+      height = map.sprite.height;
+    });
+
+    Collision.bump.contain(
+      this.container,
+      {
+        x,
+        y,
+        width,
+        height,
+      },
+      true,
+      undefined
+    );
 
     if (keys['ArrowDown']) {
       this.container.position.y += movement;

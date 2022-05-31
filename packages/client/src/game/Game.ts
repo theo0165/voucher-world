@@ -117,6 +117,8 @@ export default class Game {
     );
 
     this.display.pivot.copyFrom(this.player.container.position);
+
+    console.log(this.game.ticker.FPS);
   }
 
   addPlayer({ username, id }: PlayerType) {

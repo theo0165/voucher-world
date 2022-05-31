@@ -3,11 +3,15 @@ import Bump from '../../lib/bump';
 
 class Collision {
   static bump = new Bump('pixi');
-  static map: Sprite[] = [];
+  static map: {
+    //      top      right    bottom   left
+    type: 'start' | 'middle' | 'end';
+    sprite: Sprite;
+  }[] = [];
   static houses: Sprite[] = [];
 
-  static addMapTile(tile: Sprite) {
-    this.map.push(tile);
+  static addMapTile(sprite: Sprite, type: 'start' | 'middle' | 'end') {
+    this.map.push({ sprite, type });
   }
 
   static addHouse(house: Sprite) {

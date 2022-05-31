@@ -198,6 +198,8 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 1;
+
+      Collision.addMapTile(sprite, type);
       this.display.addChild(sprite);
     }
   }
