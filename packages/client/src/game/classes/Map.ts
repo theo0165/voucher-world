@@ -160,20 +160,20 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 2;
-      const bg = new Graphics();
-      bg.beginFill(0xff0000);
-      bg.drawRect(
-        x - sprite.width / 2,
-        y - sprite.height / 2,
-        sprite.width,
-        sprite.height
-      );
-      bg.zIndex = 1;
+      // const bg = new Graphics();
+      // bg.beginFill(0xff0000);
+      // bg.drawRect(
+      //   x - sprite.width / 2,
+      //   y - sprite.height / 2,
+      //   sprite.width,
+      //   sprite.height
+      // );
+      // bg.zIndex = 1;
       sprite.zIndex = 2;
 
       Collision.addHouse(sprite);
 
-      this.display.addChild(bg);
+      // this.display.addChild(bg);
       this.display.addChild(sprite);
     }
   }
@@ -188,18 +188,18 @@ export default class Map {
       sprite.position.y = y;
       sprite.zIndex = 1;
 
-      const bg = new Graphics();
-      bg.beginFill(0xff0000);
-      bg.drawRect(
-        x - sprite.width / 2,
-        y - sprite.height / 2,
-        sprite.width,
-        sprite.height
-      );
+      // const bg = new Graphics();
+      // bg.beginFill(0xff0000);
+      // bg.drawRect(
+      //   x - sprite.width / 2,
+      //   y - sprite.height / 2,
+      //   sprite.width,
+      //   sprite.height
+      // );
 
       Collision.addMapTile(sprite, type);
       this.display.addChild(sprite);
-      this.display.addChild(bg);
+      // this.display.addChild(bg);
     }
   }
 }

@@ -6,6 +6,7 @@ import {
   TextStyle,
   SCALE_MODES,
   Sprite,
+  Graphics,
 } from 'pixi.js';
 import Collision from './Collision';
 
@@ -46,6 +47,7 @@ export default class Player {
 
     const nameStyle = new TextStyle({
       fill: '#ffffff',
+      fontSize: '14px',
     });
 
     const name = new Text(this.name, nameStyle);
@@ -62,7 +64,7 @@ export default class Player {
       this.sprite.texture.baseTexture.scaleMode = SCALE_MODES.NEAREST;
       this.sprite.width = 64;
       this.sprite.height = 64;
-      this.sprite.anchor.set(-0.15, -0.5);
+      this.sprite.anchor.set(0.1, -0.3);
       this.sprite.animationSpeed = 0.167;
       this.sprite.play();
       this.container.addChild(this.sprite);
@@ -80,6 +82,7 @@ export default class Player {
         Collision.bump.hit(this.container, house, true, false, true, undefined)
       ) {
         movement = 0;
+        // showVoucher(house.store)
       }
     });
 

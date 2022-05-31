@@ -149,7 +149,12 @@ body {
       label {
         display: block;
         font-size: 24px;
-        padding-bottom: 10px;
+        padding-bottom: 6px;
+      }
+
+      span {
+        padding-left: 2px;
+        font-size: 12px;
       }
 
       input {
