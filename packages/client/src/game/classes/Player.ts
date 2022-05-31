@@ -6,6 +6,7 @@ import {
   TextStyle,
   SCALE_MODES,
 } from 'pixi.js';
+import Bump from '../../lib/bump';
 
 export default class Player {
   name: string;
@@ -25,6 +26,7 @@ export default class Player {
     this.app = app;
 
     this.container = new Container();
+
     console.log({
       playerX: app.renderer.screen.width / 2,
       playerY: app.renderer.screen.height / 2,
@@ -60,6 +62,7 @@ export default class Player {
           ? sheet.spritesheet.animations[`char_idle_${direction}`]
           : sheet.spritesheet.animations[`char_${direction}`]
       );
+
       this.sprite.texture.baseTexture.scaleMode = SCALE_MODES.NEAREST;
       this.sprite.width = 64;
       this.sprite.height = 64;
