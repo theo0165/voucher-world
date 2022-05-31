@@ -186,8 +186,6 @@ export default class Game {
       }
     });
 
-    // new map in constructor, i mappens constructor, ladda in tilsen, skapa tilsen och placera dom rätt
-
     document.body.appendChild(this.game.view);
 
     this.game.ticker.add(this.gameLoop, this);
