@@ -28,11 +28,6 @@ export default class Player {
 
     this.container = new Container();
 
-    console.log({
-      playerX: app.renderer.screen.width / 2,
-      playerY: app.renderer.screen.height / 2,
-    });
-
     this.container.position.x = app.renderer.screen.width / 2;
     this.container.position.y = app.renderer.screen.height / 2;
     this.container.zIndex = 2;
@@ -95,14 +90,16 @@ export default class Player {
 
     Collision.map.forEach((map) => {
       if (map.type == 'end') {
-        x = map.sprite.x - map.sprite.width / 2;
-
-        y = map.sprite.y - map.sprite.height / 2;
+        x = map.sprite.position.x - map.sprite.width / 2;
+        y = map.sprite.position.y - map.sprite.height / 2;
       }
 
-      width += map.sprite.width;
       height = map.sprite.height;
+      width += map.sprite.width / 2;
     });
+
+    height = 620;
+    width -= 1150;
 
     Collision.bump.contain(
       this.container,

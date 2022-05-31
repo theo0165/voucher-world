@@ -50,7 +50,7 @@ export default class Map {
       [160, -240],
     ];
 
-    const tileWidth = 1075;
+    const tileWidth = 1079;
     // const tileHeight = 252;
 
     const startX = 600;
@@ -64,8 +64,6 @@ export default class Map {
 
     while (storesLeft > 0) {
       if (storesLeft >= 3 && tilesPlaced === 0) {
-        console.log('placing start tile');
-
         this.drawMap('start', startX, startY);
 
         for (let i = 0; i < Math.min(storesLeft, 3); i++) {
@@ -84,8 +82,6 @@ export default class Map {
       }
 
       if (storesLeft > 3 && tilesPlaced > 0) {
-        console.log('placing middle tile');
-
         this.drawMap(
           'middle',
           startX - tileWidth * Math.max(1, tilesPlaced),
@@ -110,8 +106,6 @@ export default class Map {
       }
 
       if (storesLeft <= 3) {
-        console.log('placing end tile');
-
         this.drawMap(
           'end',
           startX - tileWidth * Math.max(1, tilesPlaced),
@@ -158,9 +152,6 @@ export default class Map {
   }
 
   private drawStore(store: Store, x: number, y: number) {
-    console.log({ x, y });
-    console.log(store);
-
     if (this.app.loader.resources['map'].textures) {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures['house.png']
@@ -188,8 +179,6 @@ export default class Map {
   }
 
   private drawMap(type: 'middle' | 'start' | 'end', x: number, y: number) {
-    console.log({ x, y });
-
     if (this.app.loader.resources['map'].textures) {
       const sprite = new Sprite(
         this.app.loader.resources['map'].textures[`${type}.png`]
@@ -199,8 +188,18 @@ export default class Map {
       sprite.position.y = y;
       sprite.zIndex = 1;
 
+      const bg = new Graphics();
+      bg.beginFill(0xff0000);
+      bg.drawRect(
+        x - sprite.width / 2,
+        y - sprite.height / 2,
+        sprite.width,
+        sprite.height
+      );
+
       Collision.addMapTile(sprite, type);
       this.display.addChild(sprite);
+      this.display.addChild(bg);
     }
   }
 }

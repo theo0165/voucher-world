@@ -28,7 +28,6 @@ export default class Game {
   constructor(playerName: string, game: GameType) {
     this.gameState = game;
     this.playerName = playerName;
-    console.log({ game });
 
     this.game = new Application({
       width: window.innerWidth,
@@ -117,8 +116,6 @@ export default class Game {
     );
 
     this.display.pivot.copyFrom(this.player.container.position);
-
-    console.log(this.game.ticker.FPS);
   }
 
   addPlayer({ username, id }: PlayerType) {
