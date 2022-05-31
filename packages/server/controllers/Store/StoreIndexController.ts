@@ -15,7 +15,10 @@ const StoreIndexController = async (
       id,
       name,
       value,
-      color
+      color,
+      startDate,
+      endDate,
+      link
     )
   `);
 

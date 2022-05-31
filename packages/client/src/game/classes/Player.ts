@@ -7,7 +7,9 @@ import {
   SCALE_MODES,
   Sprite,
 } from 'pixi.js';
+import Store from '../../types/Store';
 import Collision from './Collision';
+import Voucher from './Voucher';
 
 export default class Player {
   name: string;
@@ -46,6 +48,7 @@ export default class Player {
 
     const nameStyle = new TextStyle({
       fill: '#ffffff',
+      fontSize: '14px',
     });
 
     const name = new Text(this.name, nameStyle);
@@ -62,7 +65,7 @@ export default class Player {
       this.sprite.texture.baseTexture.scaleMode = SCALE_MODES.NEAREST;
       this.sprite.width = 64;
       this.sprite.height = 64;
-      this.sprite.anchor.set(-0.15, -0.5);
+      this.sprite.anchor.set(0.1, -0.3);
       this.sprite.animationSpeed = 0.167;
       this.sprite.play();
       this.container.addChild(this.sprite);
@@ -82,6 +85,23 @@ export default class Player {
         movement = 0;
       }
     });
+
+    Collision.voucherTriggers.forEach(
+      (trigger: { container: Container; store: Store }) => {
+        if (
+          Collision.bump.hit(
+            this.container,
+            trigger.container,
+            false,
+            false,
+            true,
+            undefined
+          )
+        ) {
+          Voucher.updateAndShowVoucher(trigger.store);
+        }
+      }
+    );
 
     let x = 0;
     let y = 0;

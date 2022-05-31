@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+@import './voucher.scss';
 
 * {
   padding: 0;
@@ -35,6 +36,7 @@ main {
 body {
   font-family: 'Open Sans', sans-serif;
   position: relative;
+  overflow: hidden;
 }
 
 .hero {
@@ -149,7 +151,12 @@ body {
       label {
         display: block;
         font-size: 24px;
-        padding-bottom: 10px;
+        padding-bottom: 6px;
+      }
+
+      span {
+        padding-left: 2px;
+        font-size: 12px;
       }
 
       input {

@@ -51,7 +51,8 @@ export default class Game {
     this.player = new Player(
       this.display,
       this.game,
-      this.playerName + ' (local)',
+      // this.playerName + ' (local)',
+      this.playerName,
       socket.id
     );
 

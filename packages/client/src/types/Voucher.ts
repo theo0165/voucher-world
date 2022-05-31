@@ -3,4 +3,7 @@ export default interface Voucher {
   name: string;
   value: string;
   color: string;
+  startDate: string;
+  endDate: string;
+  link: string;
 }

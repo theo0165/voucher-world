@@ -10,6 +10,9 @@ const VoucherIndexController = async (
     name,
     value,
     color,
+    startDate,
+    endDate,
+    link,
     store (
       id,
       name,

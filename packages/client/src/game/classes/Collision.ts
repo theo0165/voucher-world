@@ -1,5 +1,6 @@
-import { Sprite } from 'pixi.js';
+import { Container, Sprite } from 'pixi.js';
 import Bump from '../../lib/bump';
+import Store from '../../types/Store';
 
 class Collision {
   static bump = new Bump('pixi');
@@ -9,6 +10,7 @@ class Collision {
     sprite: Sprite;
   }[] = [];
   static houses: Sprite[] = [];
+  static voucherTriggers: { container: Container; store: Store }[] = [];
 
   static addMapTile(sprite: Sprite, type: 'start' | 'middle' | 'end') {
     this.map.push({ sprite, type });
@@ -16,6 +18,10 @@ class Collision {
 
   static addHouse(house: Sprite) {
     this.houses.push(house);
+  }
+
+  static addVoucherTrigger(container: Container, store: Store) {
+    this.voucherTriggers.push({ container, store });
   }
 }
 

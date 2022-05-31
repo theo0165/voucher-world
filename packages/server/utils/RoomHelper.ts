@@ -55,8 +55,6 @@ export const leaveRoom = (roomId: string, playerId: string) => {
           if (room.players.length == 0) {
             rooms.splice(roomIndex, 1);
           }
-
-          console.log({ rooms });
         }
       });
     }

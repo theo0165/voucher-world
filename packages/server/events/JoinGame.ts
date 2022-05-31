@@ -4,8 +4,6 @@ import Player from '../types/Player';
 
 export default async (socket: Socket, io: Server) => {
   socket.on('join game', async (data: Player) => {
-    console.log({ ev: 'join game', data });
-
     const room = joinRoom(data);
 
     await socket.join(room.id);
