@@ -1,5 +1,7 @@
 /* https://github.com/kittykatattack/bump */
 
+import * as PIXI from 'pixi.js';
+
 class Bump {
   constructor(renderingEngine = PIXI) {
     if (renderingEngine === undefined)
@@ -442,9 +444,7 @@ class Bump {
             r1.vx *= -1;
           }
         }
-      } else {
       }
-    } else {
     }
 
     return collision;
