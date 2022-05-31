@@ -1,6 +1,6 @@
-import { AnimatedSprite, Circle, Point, Sprite } from 'pixi.js';
+import { AnimatedSprite, Circle, Container, Point, Sprite } from 'pixi.js';
 
-export class Bump {
+export default class Bump {
   constructor(renderingEngine: string | undefined);
 
   addCollisionProperties(sprite: Sprite);
@@ -55,8 +55,8 @@ export class Bump {
   _getCenter(o: Sprite, dimension: any, axis: any);
 
   hit(
-    a: Sprite,
-    b: Sprite,
+    a: Container,
+    b: Container,
     react = false,
     bounce = false,
     global: boolean,

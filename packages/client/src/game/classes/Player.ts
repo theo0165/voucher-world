@@ -5,8 +5,9 @@ import {
   Text,
   TextStyle,
   SCALE_MODES,
+  Sprite,
 } from 'pixi.js';
-import Bump from '../../lib/bump';
+import Collision from './Collision';
 
 export default class Player {
   name: string;
@@ -77,8 +78,19 @@ export default class Player {
   }
 
   move(keys: { [key: string]: boolean }) {
+    let movement = 5;
+
+    Collision.houses.forEach((house: Sprite) => {
+      if (
+        this.sprite &&
+        Collision.bump.hit(this.container, house, true, false, true)
+      ) {
+        movement = 0;
+      }
+    });
+
     if (keys['ArrowDown']) {
-      this.container.position.y += 5;
+      this.container.position.y += movement;
 
       if (this.currentDirection != 'down' || this.isIdle) {
         this.updateSprite('down');
@@ -88,7 +100,7 @@ export default class Player {
     }
 
     if (keys['ArrowUp']) {
-      this.container.position.y -= 5;
+      this.container.position.y -= movement;
 
       if (this.currentDirection != 'up' || this.isIdle) {
         this.updateSprite('up');
@@ -98,7 +110,7 @@ export default class Player {
     }
 
     if (keys['ArrowRight']) {
-      this.container.position.x += 5;
+      this.container.position.x += movement;
 
       if (this.currentDirection != 'right' || this.isIdle) {
         this.updateSprite('right');
@@ -108,7 +120,7 @@ export default class Player {
     }
 
     if (keys['ArrowLeft']) {
-      this.container.position.x -= 5;
+      this.container.position.x -= movement;
 
       if (this.currentDirection != 'left' || this.isIdle) {
         this.updateSprite('left');

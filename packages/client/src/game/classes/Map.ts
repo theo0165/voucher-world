@@ -1,6 +1,7 @@
 import {
   Application,
   Container,
+  Graphics,
   Loader,
   SCALE_MODES,
   Sprite,
@@ -9,6 +10,7 @@ import {
 import urlBuilder from '../../helpers/urlBuilder';
 import Store from '../../types/Store';
 import StoreApiResult from '../../types/StoreApiResult';
+import Collision from './Collision';
 
 export default class Map {
   app: Application;
@@ -167,6 +169,20 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 2;
+      const bg = new Graphics();
+      bg.beginFill(0xff0000);
+      bg.drawRect(
+        x - sprite.width / 2,
+        y - sprite.height / 2,
+        sprite.width,
+        sprite.height
+      );
+      bg.zIndex = 1;
+      sprite.zIndex = 2;
+
+      Collision.addHouse(sprite);
+
+      this.display.addChild(bg);
       this.display.addChild(sprite);
     }
   }
