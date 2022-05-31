@@ -6,9 +6,10 @@ import {
   TextStyle,
   SCALE_MODES,
   Sprite,
-  Graphics,
 } from 'pixi.js';
+import Store from '../../types/Store';
 import Collision from './Collision';
+import Voucher from './Voucher';
 
 export default class Player {
   name: string;
@@ -82,9 +83,25 @@ export default class Player {
         Collision.bump.hit(this.container, house, true, false, true, undefined)
       ) {
         movement = 0;
-        // showVoucher(house.store)
       }
     });
+
+    Collision.voucherTriggers.forEach(
+      (trigger: { container: Container; store: Store }) => {
+        if (
+          Collision.bump.hit(
+            this.container,
+            trigger.container,
+            false,
+            false,
+            true,
+            undefined
+          )
+        ) {
+          Voucher.updateAndShowVoucher(trigger.store);
+        }
+      }
+    );
 
     let x = 0;
     let y = 0;

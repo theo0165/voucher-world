@@ -51,12 +51,9 @@ export default class Map {
     ];
 
     const tileWidth = 1079;
-    // const tileHeight = 252;
 
     const startX = 600;
-    // const startX = 10;
     const startY = 200;
-    // const startY = 10;
 
     let tilesPlaced = 0;
     let storesLeft = stores.length;
@@ -160,20 +157,19 @@ export default class Map {
       sprite.position.x = x;
       sprite.position.y = y;
       sprite.zIndex = 2;
-      // const bg = new Graphics();
-      // bg.beginFill(0xff0000);
-      // bg.drawRect(
-      //   x - sprite.width / 2,
-      //   y - sprite.height / 2,
-      //   sprite.width,
-      //   sprite.height
-      // );
-      // bg.zIndex = 1;
-      sprite.zIndex = 2;
+
+      const voucherArea = new Graphics();
+      voucherArea.drawRect(
+        -sprite.width / 2,
+        +sprite.height / 2,
+        sprite.width,
+        90
+      );
+      sprite.addChild(voucherArea);
 
       Collision.addHouse(sprite);
+      Collision.addVoucherTrigger(voucherArea, store);
 
-      // this.display.addChild(bg);
       this.display.addChild(sprite);
     }
   }
@@ -188,18 +184,8 @@ export default class Map {
       sprite.position.y = y;
       sprite.zIndex = 1;
 
-      // const bg = new Graphics();
-      // bg.beginFill(0xff0000);
-      // bg.drawRect(
-      //   x - sprite.width / 2,
-      //   y - sprite.height / 2,
-      //   sprite.width,
-      //   sprite.height
-      // );
-
       Collision.addMapTile(sprite, type);
       this.display.addChild(sprite);
-      // this.display.addChild(bg);
     }
   }
 }
