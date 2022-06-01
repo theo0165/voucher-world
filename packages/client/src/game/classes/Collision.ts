@@ -5,7 +5,6 @@ import Store from '../../types/Store';
 class Collision {
   static bump = new Bump('pixi');
   static map: {
-    //      top      right    bottom   left
     type: 'start' | 'middle' | 'end';
     sprite: Sprite;
   }[] = [];

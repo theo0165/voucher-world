@@ -1,5 +1,4 @@
 import Game from '../Game';
-
 export class Preloader {
   static loadAssets(game: Game) {
     game.game.loader
