@@ -1,4 +1,4 @@
-INSERT MANDATORY GIF
+<img src="https://i.giphy.com/media/SK92U8rnhWWx80duDn/giphy.webp" style="width:100%" />
 
 # Voucher World
 
