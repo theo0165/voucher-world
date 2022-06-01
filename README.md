@@ -65,6 +65,7 @@
 -   [#30 - Fix logo size + transparent background](https://github.com/theo0165/voucher-world/pull/30)
 -   [#31 - Add license, update readme, update api result](https://github.com/theo0165/voucher-world/pull/31)
 -   [#32 - Add gif](https://github.com/theo0165/voucher-world/pull/32)
+-   [#33 - Update license](https://github.com/theo0165/voucher-world/pull/33)
 
 # Code Review
 
