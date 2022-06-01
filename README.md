@@ -64,6 +64,7 @@
 -   [#28 - Update env prefix for cors](https://github.com/theo0165/voucher-world/pull/28)
 -   [#30 - Fix logo size + transparent background](https://github.com/theo0165/voucher-world/pull/30)
 -   [#31 - Add license, update readme, update api result](https://github.com/theo0165/voucher-world/pull/31)
+-   [#32 - Add gif](https://github.com/theo0165/voucher-world/pull/32)
 
 # Code Review
 
