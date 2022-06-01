@@ -48,5 +48,3 @@ Tested by the following muggles (non-coders):
 2. John Doe
 3. Jane Doe
 4. John Doe
-
-123
