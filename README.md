@@ -37,6 +37,7 @@ Add the installation instructions.
 -   [#25 - Update changelog with new pull requests](https://github.com/theo0165/voucher-world/pull/25)
 -   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
 -   [#27 - Code review](https://github.com/theo0165/voucher-world/pull/27)
+-   [#28 - Update env prefix for cors](https://github.com/theo0165/voucher-world/pull/28)
 
 # Code Review
 
