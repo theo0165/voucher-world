@@ -38,6 +38,7 @@ Add the installation instructions.
 -   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
 -   [#27 - Code review](https://github.com/theo0165/voucher-world/pull/27)
 -   [#28 - Update env prefix for cors](https://github.com/theo0165/voucher-world/pull/28)
+-   [#29 - fix bug where user could leave map](https://github.com/theo0165/voucher-world/pull/29)
 -   [#30 - Fix logo size + transparent background](https://github.com/theo0165/voucher-world/pull/30)
 
 # Code Review

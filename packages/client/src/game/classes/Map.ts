@@ -162,7 +162,7 @@ export default class Map {
       voucherArea.drawRect(
         -sprite.width / 2,
         +sprite.height / 2,
-        sprite.width,
+        sprite.width - 50,
         90
       );
       sprite.addChild(voucherArea);

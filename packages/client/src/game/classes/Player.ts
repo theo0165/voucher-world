@@ -29,9 +29,6 @@ export default class Player {
     this.app = app;
 
     this.container = new Container();
-
-    this.container.position.x = app.renderer.screen.width / 2;
-    this.container.position.y = app.renderer.screen.height / 2;
     this.container.zIndex = 2;
   }
 
@@ -119,7 +116,7 @@ export default class Player {
     });
 
     height = 620;
-    width -= 1150;
+    width -= 630;
 
     Collision.bump.contain(
       this.container,
