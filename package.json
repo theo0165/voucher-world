@@ -2,8 +2,8 @@
   "name": "voucher-world",
   "private": "true",
   "scripts": {
-    "start": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev\"",
-    "start:host": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev:host\"",
+    "dev": "concurrently \"cd packages/server && npm run dev\" \"cd packages/client && npm run dev\"",
+    "dev:host": "concurrently \"cd packages/server && npm start\" \"cd packages/client && npm run dev:host\"",
     "debug": "concurrently \"cd packages/server && npm debug\" \"cd packages/client && npm run dev:host\"",
     "postinstall": "(cd packages/server && npm install); (cd packages/client && npm install)"
   },
