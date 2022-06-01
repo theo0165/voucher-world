@@ -7,9 +7,7 @@ const VoucherIndexController = async (
 ): Promise<void> => {
   const vouchers = await supabase.from('voucher').select(`
     id,
-    name,
     value,
-    color,
     startDate,
     endDate,
     link,
