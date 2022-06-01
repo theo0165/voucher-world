@@ -29,6 +29,12 @@ Add the installation instructions.
 -   [#17 - Update background + generate houses](https://github.com/theo0165/voucher-world/pull/17)
 -   [#18 - Collision with houses and map borders](https://github.com/theo0165/voucher-world/pull/18)
 -   [#19 - Display vouchers](https://github.com/theo0165/voucher-world/pull/19)
+-   [#20 - Deploy](https://github.com/theo0165/voucher-world/pull/20)
+-   [#21 - Update procfile](https://github.com/theo0165/voucher-world/pull/21)
+-   [#22 - Make typescript prod dependency](https://github.com/theo0165/voucher-world/pull/22)
+-   [#23 - Add @types to prod dependencies](https://github.com/theo0165/voucher-world/pull/23)
+-   [#24 - Vercel clean urls](https://github.com/theo0165/voucher-world/pull/24)
+-   [#25 - Update changelog with new pull requests](https://github.com/theo0165/voucher-world/pull/25)
 -   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
 
 # Code Review
