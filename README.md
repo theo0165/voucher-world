@@ -1,4 +1,4 @@
-INSERT MANDATORY GIF
+<img src="https://i.giphy.com/media/SK92U8rnhWWx80duDn/giphy.webp" style="width:100%" />
 
 # Voucher World
 
@@ -65,6 +65,7 @@ INSERT MANDATORY GIF
 -   [#29 - fix bug where user could leave map](https://github.com/theo0165/voucher-world/pull/29)
 -   [#30 - Fix logo size + transparent background](https://github.com/theo0165/voucher-world/pull/30)
 -   [#31 - Add license, update readme, update api result](https://github.com/theo0165/voucher-world/pull/31)
+-   [#32 - Add gif](https://github.com/theo0165/voucher-world/pull/32)
 
 # Code Review
 
