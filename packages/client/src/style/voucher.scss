@@ -33,16 +33,11 @@
   .voucher-content {
     .voucher-logo {
       img {
-        width: 100%;
+        max-height: 100px;
+        max-width: 100%;
         display: block;
+        margin: 0 auto;
       }
-    }
-
-    .voucher-name {
-      font-size: 24px;
-      font-weight: 500;
-      word-wrap: break-word;
-      text-align: center;
     }
 
     .voucher-value {
@@ -54,6 +49,7 @@
     .voucher-date {
       display: block;
       padding-top: 6px;
+      text-align: center;
     }
 
     button {

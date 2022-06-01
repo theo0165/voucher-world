@@ -8,7 +8,6 @@ export default class Voucher {
   static closeBtn = this.voucherBox?.querySelector('#voucher-close');
   static logo: HTMLImageElement | null | undefined =
     this.voucherBox?.querySelector('.voucher-logo img');
-  static voucherName = this.voucherBox?.querySelector('.voucher-name');
   static value = this.voucherBox?.querySelector('.voucher-value');
   static dateInterval = this.voucherBox?.querySelector('.voucher-date');
   static linkBtn: HTMLButtonElement | null | undefined =
@@ -27,8 +26,8 @@ export default class Voucher {
   static updateAndShowVoucher(store: Store) {
     if (
       document.body.classList.contains('voucher-open') &&
-      this.voucherName?.textContent !==
-        (store.vouchers[0] ? store.vouchers[0].name : '')
+      this.value?.textContent !==
+        (store.vouchers[0] ? store.vouchers[0].value : '')
     ) {
       this.closeVoucher();
     } else if (document.body.classList.contains('voucher-open')) {
@@ -41,7 +40,6 @@ export default class Voucher {
       !this.voucherBox ||
       !this.closeBtn ||
       !this.logo ||
-      !this.voucherName ||
       !this.value ||
       !this.dateInterval ||
       !this.link ||
@@ -61,7 +59,6 @@ export default class Voucher {
     this.link.style.color = this.whiteOrBlack(store.secondary_color);
 
     this.logo.src = store.logo;
-    this.voucherName.textContent = voucher.name;
     this.value.textContent = voucher.value;
     this.dateInterval.textContent = `Gäller från ${date.format(
       new Date(voucher.startDate),
