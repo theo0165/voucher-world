@@ -1,5 +1,10 @@
 import { config } from 'dotenv';
-config({ path: '../../.env' });
+
+if (process.env.NODE_ENV) {
+  config();
+} else {
+  config({ path: '../../.env' });
+}
 
 import { createServer } from 'http';
 import express from 'express';
