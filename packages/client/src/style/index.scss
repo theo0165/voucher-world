@@ -109,7 +109,7 @@ body {
     position: absolute;
     background: white;
     width: 660px;
-    height: 390px;
+    height: 480px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -126,11 +126,15 @@ body {
       cursor: pointer;
     }
 
+    .instructions {
+      padding: 0 48px 48px 48px;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       width: 100%;
-      height: 100%;
+      height: 80%;
     }
 
     .inputs {
