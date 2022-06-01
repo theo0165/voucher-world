@@ -35,6 +35,7 @@ Add the installation instructions.
 -   [#23 - Add @types to prod dependencies](https://github.com/theo0165/voucher-world/pull/23)
 -   [#24 - Vercel clean urls](https://github.com/theo0165/voucher-world/pull/24)
 -   [#25 - Update changelog with new pull requests](https://github.com/theo0165/voucher-world/pull/25)
+-   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
 
 # Code Review
 
