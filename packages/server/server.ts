@@ -21,7 +21,8 @@ const server = createServer(app);
 
 app.use(
   cors({
-    origin: '*',
+    origin:
+      process.env.NODE_ENV === 'production' ? process.env.VITE_CLIENT_URL : '*',
   })
 );
 app.use(express.json());
@@ -31,7 +32,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 
-const io = new Server(server, { cors: { origin: '*' } });
+const io = new Server(server, {
+  cors: {
+    origin:
+      process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : '*',
+  },
+});
 
 io.on('connection', (socket) => {
   console.log('user connected');
