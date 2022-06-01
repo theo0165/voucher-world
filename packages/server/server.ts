@@ -22,7 +22,7 @@ const server = createServer(app);
 app.use(
   cors({
     origin:
-      process.env.NODE_ENV === 'production' ? process.env.VITE_CLIENT_URL : '*',
+      process.env.NODE_ENV === 'production' ? process.env.CLIENT_URL : '*',
   })
 );
 app.use(express.json());
