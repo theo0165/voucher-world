@@ -1,12 +1,36 @@
 INSERT MANDATORY GIF
 
-# Project Title
+# Voucher World
 
-Text about the project and which JavaScript library you're using. This would also be a great place to link the game on Netlify.
+2D multiplayer voucher collection game. Like Mecenat but interactive.
 
 # Installation
 
-Add the installation instructions.
+1. Clone the repository
+    - `git clone https://github.com/theo0165/voucher-world`
+    - `cd voucher-world`
+2. Install dependencies
+    - `npm install`
+    - This can be done in the root of the project.
+3. Set up database
+    - Create a supabase project
+    - Make a database with the following tables
+        - store
+            - name - varchar
+            - primary_color - varchar
+            - secondary_color - varchar
+            - logo - varchar
+        - voucher
+            - store_id - foreign key -> store.id
+            - value - varchar
+            - startDate - date
+            - endDate - date
+            - link - varchar
+4. Add varibles to environment file
+    - Don't forget to rename the .env.example to .env
+5. Start the server and client
+    - `npm run dev`
+6. Join the game and have fun
 
 # Changelog
 
@@ -40,6 +64,7 @@ Add the installation instructions.
 -   [#28 - Update env prefix for cors](https://github.com/theo0165/voucher-world/pull/28)
 -   [#29 - fix bug where user could leave map](https://github.com/theo0165/voucher-world/pull/29)
 -   [#30 - Fix logo size + transparent background](https://github.com/theo0165/voucher-world/pull/30)
+-   [#31 - Add license, update readme, update api result](https://github.com/theo0165/voucher-world/pull/31)
 
 # Code Review
 
@@ -58,14 +83,14 @@ Add the installation instructions.
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
-3. Jane Doe
-4. John Doe
+1. Neo Lejondahl
+2. Simon Helier
+3. Christopher Michael
+4. Hans Andersson
 
 Tested by the following muggles (non-coders):
 
-1. Jane Doe
-2. John Doe
-3. Jane Doe
-4. John Doe
+1. Christina Sandell
+2. Jörgen Sandell
+3. Caroline Staaf
+4. Theodore Staaf

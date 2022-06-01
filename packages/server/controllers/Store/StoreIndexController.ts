@@ -13,9 +13,7 @@ const StoreIndexController = async (
     logo,
     vouchers: voucher (
       id,
-      name,
       value,
-      color,
       startDate,
       endDate,
       link
