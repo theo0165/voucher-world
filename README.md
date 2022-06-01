@@ -29,6 +29,7 @@ Add the installation instructions.
 -   [#17 - Update background + generate houses](https://github.com/theo0165/voucher-world/pull/17)
 -   [#18 - Collision with houses and map borders](https://github.com/theo0165/voucher-world/pull/18)
 -   [#19 - Display vouchers](https://github.com/theo0165/voucher-world/pull/19)
+-   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
 
 # Code Review
 
