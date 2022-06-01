@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "private": "true",
   "scripts": {
-    "start": "node server.ts",
-    "postinstall": "tsc",
+    "start": "tsc && node dist/server.js",
     "dev": "nodemon server.ts",
     "debug": "DEBUG=socket* nodemon server.ts",
     "build": "tsc --build"
