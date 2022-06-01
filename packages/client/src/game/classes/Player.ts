@@ -76,7 +76,7 @@ export default class Player {
   }
 
   move(keys: { [key: string]: boolean }) {
-    let movement = 15;
+    let movement = 5;
 
     Collision.houses.forEach((house: Sprite) => {
       if (
