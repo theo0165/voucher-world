@@ -25,8 +25,14 @@ export default class Voucher {
   };
 
   static updateAndShowVoucher(store: Store) {
-    if (document.body.classList.contains('voucher-open')) {
+    if (
+      document.body.classList.contains('voucher-open') &&
+      this.voucherName?.textContent !==
+        (store.vouchers[0] ? store.vouchers[0].name : '')
+    ) {
       this.closeVoucher();
+    } else if (document.body.classList.contains('voucher-open')) {
+      return;
     }
 
     let voucher: VoucherType;
