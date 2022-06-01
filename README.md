@@ -35,6 +35,8 @@ Add the installation instructions.
 -   [#23 - Add @types to prod dependencies](https://github.com/theo0165/voucher-world/pull/23)
 -   [#24 - Vercel clean urls](https://github.com/theo0165/voucher-world/pull/24)
 -   [#25 - Update changelog with new pull requests](https://github.com/theo0165/voucher-world/pull/25)
+-   [#26 - Add cors on production + bug fixes/cleanup](https://github.com/theo0165/voucher-world/pull/26)
+-   [#27 - Code review](https://github.com/theo0165/voucher-world/pull/27)
 
 # Code Review
 
@@ -44,8 +46,8 @@ Add the installation instructions.
 4. `General` - The project generated an error saying that the favicon couldn’t load.
 5. `General` - To make the game more user friendly perhaps add some more instructions on how to play the game.
 6. `General` - We were not able to redeem any vouchers, perhaps have look at that.
-7. `index.ts:3` - You use descriptive variable names so this comment is unnecessary. 
-8. `Game.ts:54`- Remember to remove code that is not in use. 
+7. `index.ts:3` - You use descriptive variable names so this comment is unnecessary.
+8. `Game.ts:54`- Remember to remove code that is not in use.
 9. `voucher.ts:21-23` - Remember to remove the comments on rows from 21 to 23.
 10. `Praise` - Overall great job. We enjoyed playing your game! You have a good file structure and descriptive variable names.
 
